@@ -364,6 +364,7 @@ const eventsData = [
     category: "Technical",
     poster: ROBOTICSCHALLENGE,
     fee: 150,
+  },
 ];
 
 export default eventsData;
