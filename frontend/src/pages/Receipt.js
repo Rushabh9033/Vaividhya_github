@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { EVENT_IMAGES } from "../Events";
+import eventsData from "../data/eventsData"; // Fix images
 import { API } from "../config/api";
 
 function Receipt() {
@@ -159,7 +160,20 @@ function Receipt() {
 
               <div className="list-group list-group-flush">
                 {event_details && event_details.map((event) => {
-                  const imageUrl = EVENT_IMAGES[event.event_id] || EVENT_IMAGES["DEFAULT"];
+                  // Robust Image Lookup (Matches RegisterEvents logic)
+                  const normalize = (str) => String(str || "").toLowerCase().trim();
+
+                  const localMatch = eventsData.find(e =>
+                    normalize(e.id) === normalize(event.event_id) ||
+                    normalize(e.slug) === normalize(event.event_id) ||
+                    normalize(e.name) === normalize(event.event_name)
+                  );
+
+                  // Also try fuzzy lookup in EVENT_IMAGES
+                  const fuzzyKey = Object.keys(EVENT_IMAGES).find(key => normalize(key) === normalize(event.event_id));
+                  const fuzzyImage = fuzzyKey ? EVENT_IMAGES[fuzzyKey] : null;
+
+                  const imageUrl = localMatch?.poster || EVENT_IMAGES[event.event_id] || fuzzyImage || EVENT_IMAGES["DEFAULT"];
 
                   return (
                     <div key={event.event_id} className="list-group-item d-flex align-items-center p-3 border rounded mb-2 shadow-sm break-avoid">
