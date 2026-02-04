@@ -17,7 +17,6 @@ import REVERSECODING from "../assets/REVERSECODING.png";
 import ROBOFOOTBALLCLASH from "../assets/ROBOFOOTBALLCLASH.jpeg";
 import ROBOWARPRO from "../assets/ROBOWARPRO.png";
 import WEBTREASUREHUNTING from "../assets/WEB-TREASURE-HUNTING.png";
-import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 import AISSHAPECIPHER from "../assets/AISSHAPECIPHER.png";
 import AIQUIZ from "../assets/AIQUIZ.jpeg";
 import BRAINBOOSTERMATH from "../assets/BRAINBOOSTERMATH.jpeg";
