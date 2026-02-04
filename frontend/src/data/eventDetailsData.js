@@ -539,29 +539,7 @@ const eventDetailsData = {
     contact: "Varun Ranpariya – 9106088498"
   },
 
-  "ad-arena": {
-    name: "Ad Arena",
-    tagline: "Perform Advertisement in Your Way",
-    poster: ADARENA,
-    fee: "50",
-    about: "Prepare and perform advertisements.",
-    registration: "Fee: 50 per participant. Team size 3-4.",
-    rules: [
-      "No PPTs.",
-      "Round 1: Perform ad (2-4 mins).",
-      "Round 2: Ad with a twist (Pick character + product)."
-    ],
-    rounds: [
-      "Round 1: Own choice advertisement.",
-      "Round 2: Chit-based character/product combo."
-    ],
-    venue: "Room 408",
-    time: "To be announced 2-3 days prior.",
-    prizes: "Certificates and cash/vouchers.",
-    facultyCoordinator: "Prof. Bina Raval",
-    studentCoordinators: ["Jeel Gaudani", "Shruti Kalathiya"],
-    contact: "Jeel Gaudani: 7383243455"
-  },
+
 
   "spin-mania": {
     name: "Spin Mania",
@@ -632,6 +610,80 @@ const eventDetailsData = {
     facultyCoordinator: "Prof. Bhargav Sodha",
     studentCoordinators: ["Baflipara Hesvi", "Sonani Yug"],
     contact: "Baflipara Hesvi - 9979584531"
+  },
+
+  "adrena": {
+    name: "Ad Arena",
+    tagline: "Perform Advertisement in Your Way",
+    poster: ADARENA,
+    fee: "50",
+    about: "Prepare and perform advertisements.",
+    registration: "Fee: 50 per participant. Team size 3-4.",
+    rules: [
+      "No PPTs.",
+      "Round 1: Perform ad (2-4 mins).",
+      "Round 2: Ad with a twist (Pick character + product)."
+    ],
+    rounds: [
+      "Round 1: Own choice advertisement.",
+      "Round 2: Chit-based character/product combo."
+    ],
+    venue: "Room 408",
+    time: "To be announced 2-3 days prior.",
+    prizes: "Certificates and cash/vouchers.",
+    facultyCoordinator: "Prof. Bina Raval",
+    studentCoordinators: ["Jeel Gaudani", "Shruti Kalathiya"],
+    contact: "Jeel Gaudani: 7383243455"
+  },
+
+  "autonomous-robotics-workshop": {
+    name: "Autonomous Robotics Workshop",
+    tagline: "Build. Program. Dominate.",
+    poster: require("../assets/autonomous-robotics-workshop.jpg"),
+    fee: "2000",
+    about: "A hands-on workshop on building and programming autonomous robots.",
+    registration: "Fee: 2000 per team.",
+    rules: [
+      "Bring your own laptop.",
+      "Kits will be provided.",
+      "Full day workshop."
+    ],
+    rounds: [
+      "Session 1: Introduction to Robotics",
+      "Session 2: Hands-on Building",
+      "Session 3: Programming & Testing",
+      "Competition: Final Run"
+    ],
+    venue: "Main Auditorium",
+    time: "9:00 AM - 5:00 PM",
+    prizes: "Certificates and Kits",
+    facultyCoordinator: "Prof. Robotics Expert",
+    studentCoordinators: ["Student Lead 1", "Student Lead 2"],
+    contact: "Coordinator - 9998887776"
+  },
+
+  "robotics-challenge": {
+    name: "Robotics Challenge",
+    tagline: "The Ultimate Test of Metal and Code",
+    poster: require("../assets/robotics-challenge.jpg"),
+    fee: "150",
+    about: "A challenging competition testing your robot's capabilities in navigation and task execution.",
+    registration: "Fee: 150 per team.",
+    rules: [
+      "Robot must fit within dimensions.",
+      "No manual intervention during run.",
+      "Points for speed and accuracy."
+    ],
+    rounds: [
+      "Round 1: Obstacle Course",
+      "Round 2: Precision Task"
+    ],
+    venue: "Quadrangle",
+    time: "10:00 AM onwards",
+    prizes: "Cash Prizes and Trophies",
+    facultyCoordinator: "Prof. Mechanical Dept",
+    studentCoordinators: ["Student A", "Student B"],
+    contact: "Coordinator - 8887776665"
   }
 };
 
