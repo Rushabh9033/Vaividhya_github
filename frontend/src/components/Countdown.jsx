@@ -21,12 +21,13 @@ function Countdown({ targetDate = "2026-02-15T09:00:00" }) {
     }
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const timer = setTimeout(() => {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
 
-        return () => clearInterval(timer);
-    }, [targetDate]);
+        return () => clearTimeout(timer);
+        // eslint-disable-next-line
+    }, [timeLeft]);
 
     if (timeLeft.expired) {
         return (

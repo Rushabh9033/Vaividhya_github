@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { API } from "../config/api";
-import showToast from "../components/Toast";
 
 function Register() {
   const navigate = useNavigate();

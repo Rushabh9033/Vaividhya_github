@@ -1,4 +1,4 @@
-import collegeLogo from "../assets/college-logo.png";
+import React from "react";
 
 
 function SponsorsCommittee() {
