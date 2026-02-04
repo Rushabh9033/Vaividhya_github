@@ -12,7 +12,7 @@ const getApiUrl = () => {
     }
 
     // Production fallback (if deployed)
-    return "https://your-production-backend-url.com"; // Replace with actual production URL
+    return "https://vaividhya-github.vercel.app"; // Production Backend URL
 };
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || getApiUrl();
