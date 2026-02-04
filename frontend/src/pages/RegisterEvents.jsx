@@ -30,59 +30,27 @@ function RegisterEvents() {
     "Engineering"
   ];
 
-  // ================= FETCH EVENTS =================
+  // ================= LOAD EVENTS FROM LOCAL DATA =================
+  // Users requested to use the same logic as Events page (which uses local data)
+  // This guarantees images load and we send the correct SLUG to backend.
   useEffect(() => {
     if (!userId) {
       navigate("/register");
       return;
     }
 
-    async function fetchEvents() {
-      try {
-        const response = await fetch(
-          `${API.EVENTS}/`
-        );
+    // Map local eventsData to the structure expected by this component
+    const mappedEvents = eventsData.map(e => ({
+      event_id: e.slug,       // USE SLUG AS ID (Matches backend seed)
+      event_name: e.name,
+      category: e.category,
+      price: e.fee,
+      image: e.poster         // Direct image usage (Guaranteed to work)
+    }));
 
-        if (!response.ok) throw new Error("Fetch failed");
+    setEvents(mappedEvents);
+    setStatus({ loading: false, error: null, submitting: false });
 
-        const apiData = await response.json();
-
-        // ✅ Merge images safely with fallback to local eventsData
-        const enriched = apiData.map(event => {
-          // Try to find matching local event to get the poster/image
-          // Match by ID (loose for string/int), Slug (if event_id is slug), or Name
-          // Fuzzy match: lowercase, trimmed
-          const normalize = (str) => String(str || "").toLowerCase().trim();
-
-          const localMatch = eventsData.find(e =>
-            normalize(e.id) === normalize(event.event_id) ||
-            normalize(e.slug) === normalize(event.event_id) ||
-            normalize(e.name) === normalize(event.event_name)
-          );
-
-          // Also try looking up EVENT_IMAGES with normalized key if direct lookup fails
-          const directImage = EVENT_IMAGES[event.event_id];
-          const fuzzyKey = Object.keys(EVENT_IMAGES).find(key => normalize(key) === normalize(event.event_id));
-          const fuzzyImage = fuzzyKey ? EVENT_IMAGES[fuzzyKey] : null;
-
-          return {
-            ...event,
-            image: localMatch?.poster || directImage || fuzzyImage || "/placeholder.png"
-          };
-        });
-
-        setEvents(enriched);
-        setStatus({ loading: false, error: null, submitting: false });
-      } catch (err) {
-        setStatus({
-          loading: false,
-          error: "Could not load events. Please try again.",
-          submitting: false
-        });
-      }
-    }
-
-    fetchEvents();
   }, [userId, navigate]);
 
   // ================= FILTER EVENTS =================
