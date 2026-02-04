@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { EVENT_IMAGES } from "../Events";
+import eventsData from "../data/eventsData"; // Robust fallback
 import { API } from "../config/api";
 import showToast from "../components/Toast";
 
@@ -45,11 +46,21 @@ function RegisterEvents() {
 
         const apiData = await response.json();
 
-        // ✅ Merge images safely
-        const enriched = apiData.map(event => ({
-          ...event,
-          image: EVENT_IMAGES[event.event_id] || "/placeholder.png"
-        }));
+        // ✅ Merge images safely with fallback to local eventsData
+        const enriched = apiData.map(event => {
+          // Try to find matching local event to get the poster/image
+          // Match by ID (loose for string/int), Slug (if event_id is slug), or Name
+          const localMatch = eventsData.find(e =>
+            e.id == event.event_id ||
+            e.slug === event.event_id ||
+            e.name === event.event_name
+          );
+
+          return {
+            ...event,
+            image: localMatch?.poster || EVENT_IMAGES[event.event_id] || "/placeholder.png"
+          };
+        });
 
         setEvents(enriched);
         setStatus({ loading: false, error: null, submitting: false });
