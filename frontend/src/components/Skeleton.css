@@ -1,0 +1,112 @@
+/* ===== SKELETON LOADER ===== */
+
+.skeleton {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 25%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Event Card Skeleton */
+.event-card-skeleton {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 200px;
+}
+
+.skeleton-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton-title {
+    height: 24px;
+    width: 70%;
+    border-radius: 4px;
+}
+
+.skeleton-text {
+    height: 16px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.skeleton-text.short {
+    width: 50%;
+}
+
+.skeleton-button {
+    height: 40px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Receipt Skeleton */
+.receipt-skeleton {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.skeleton-header {
+    height: 60px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.skeleton-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.skeleton-label {
+    height: 20px;
+    width: 30%;
+    border-radius: 4px;
+}
+
+.skeleton-value {
+    height: 20px;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.skeleton-events {
+    height: 150px;
+    width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.skeleton-total {
+    height: 50px;
+    width: 40%;
+    border-radius: 8px;
+    margin-left: auto;
+}
