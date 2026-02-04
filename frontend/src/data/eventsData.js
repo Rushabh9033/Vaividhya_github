@@ -364,17 +364,6 @@ const eventsData = [
     category: "Technical",
     poster: ROBOTICSCHALLENGE,
     fee: 150,
-  },
-  {
-    id: 999,
-    name: "FREE FUN EVENT",
-    slug: "free-fun-event",
-    category: "Non-Technical",
-    poster: FREEEVENTPOSTER,
-    fee: 0,
-    isFreeEvent: true,
-    maxFreeSlots: 100 // for future backend use
-  },
 ];
 
 export default eventsData;
