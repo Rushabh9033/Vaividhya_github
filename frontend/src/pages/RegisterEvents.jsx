@@ -51,15 +51,23 @@ function RegisterEvents() {
         const enriched = apiData.map(event => {
           // Try to find matching local event to get the poster/image
           // Match by ID (loose for string/int), Slug (if event_id is slug), or Name
+          // Fuzzy match: lowercase, trimmed
+          const normalize = (str) => String(str || "").toLowerCase().trim();
+
           const localMatch = eventsData.find(e =>
-            String(e.id) === String(event.event_id) ||
-            e.slug === event.event_id ||
-            e.name === event.event_name
+            normalize(e.id) === normalize(event.event_id) ||
+            normalize(e.slug) === normalize(event.event_id) ||
+            normalize(e.name) === normalize(event.event_name)
           );
+
+          // Also try looking up EVENT_IMAGES with normalized key if direct lookup fails
+          const directImage = EVENT_IMAGES[event.event_id];
+          const fuzzyKey = Object.keys(EVENT_IMAGES).find(key => normalize(key) === normalize(event.event_id));
+          const fuzzyImage = fuzzyKey ? EVENT_IMAGES[fuzzyKey] : null;
 
           return {
             ...event,
-            image: localMatch?.poster || EVENT_IMAGES[event.event_id] || "/placeholder.png"
+            image: localMatch?.poster || directImage || fuzzyImage || "/placeholder.png"
           };
         });
 
