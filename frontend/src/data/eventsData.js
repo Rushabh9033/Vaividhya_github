@@ -350,6 +350,22 @@ const eventsData = [
     fee: 50,
   },
   {
+    id: 39,
+    name: "Autonomous Robotics Workshop",
+    slug: "autonomous-robotics-workshop",
+    category: "Technical",
+    poster: AUTONOMOUSROBOTICS,
+    fee: 2000,
+  },
+  {
+    id: 40,
+    name: "Robotics Challenge",
+    slug: "robotics-challenge",
+    category: "Technical",
+    poster: ROBOTICSCHALLENGE,
+    fee: 150,
+  },
+  {
     id: 999,
     name: "FREE FUN EVENT",
     slug: "free-fun-event",
