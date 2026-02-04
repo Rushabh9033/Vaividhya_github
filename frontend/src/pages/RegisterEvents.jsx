@@ -21,6 +21,7 @@ function RegisterEvents() {
 
   // ✅ Define technical categories (backend-compatible)
   const TECHNICAL_CATEGORIES = [
+    "Technical", // Added to catch generic technical events
     "Robotics",
     "Coding",
     "Artificial Intelligence",
