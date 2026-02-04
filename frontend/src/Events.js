@@ -22,7 +22,7 @@ import QUANTUMQUEST from "./assets/QUANTUMQUESTPHYSICS.jpeg";
 import BGMI from "./assets/BGMI.jpeg";
 import FREEFIREPRO from "./assets/FREEFIREPRO.png";
 import LUDOKING from "./assets/LUDOKING.jpeg";
-import SPINMANIA from "./assets/SPIN MANIA.jpeg";
+import SPINMANIA from "./assets/SPIN-MANIA.jpeg";
 import MYSTICMOVER from "./assets/MYSTICMOVER.jpeg";
 
 // Robotics
@@ -45,7 +45,7 @@ import ROBOTICSCHALLENGE from "./assets/robotics-challenge.jpg";
 
 // Additional Imports
 import REALLIFEAMONGUS from "./assets/REALLIFEAMONGUS.jpeg";
-import WEBTREASUREHUNTING from "./assets/WEB TREASURE HUNTING.png";
+import WEBTREASUREHUNTING from "./assets/WEB-TREASURE-HUNTING.png";
 import MINIMUSTIFOR1MIN from "./assets/MINIMUSTIFOR1MIN.png";
 import ROBOMINDMATRIX from "./assets/ROBOMINDMATRIX.png";
 import SURVIVORDROP from "./assets/SURVIOURDROP.png";

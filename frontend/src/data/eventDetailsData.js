@@ -1,4 +1,4 @@
-import WEBTREASUREHUNTING from "../assets/WEB TREASURE HUNTING.png";
+import WEBTREASUREHUNTING from "../assets/WEB-TREASURE-HUNTING.png";
 import BLINDCODE from "../assets/BLINDCODE.jpeg";
 import REVERSECODING from "../assets/REVERSECODING.png";
 import BULLVSBEAR from "../assets/BULLVSBEAR.jpeg";
@@ -19,7 +19,7 @@ import LOGOHUNT from "../assets/LOGOHUNT.jpeg";
 import MYSTICMOVER from "../assets/MYSTICMOVER.jpeg";
 import CASECATALYST from "../assets/CASECATALYST.png"; // check filename
 import ADARENA from "../assets/ADARENA.jpeg";
-import SPINMANIA from "../assets/SPIN MANIA.jpeg";
+import SPINMANIA from "../assets/SPIN-MANIA.jpeg";
 import DREAMTODEAL from "../assets/DREAMTODEAL.png"; // check filename
 import BIZBRAIN from "../assets/BIZBRAINCHALLENGE.png";
 
