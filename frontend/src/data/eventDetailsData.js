@@ -638,52 +638,65 @@ const eventDetailsData = {
 
   "autonomous-robotics-workshop": {
     name: "Autonomous Robotics Workshop",
-    tagline: "Build. Program. Dominate.",
-    poster: require("../assets/autonomous-robotics-workshop.jpg"),
+    tagline: "Dive into the world of robotics!",
+    poster: require("../assets/autonomous-robotics-workshop.png"),
     fee: "2000",
-    about: "A hands-on workshop on building and programming autonomous robots.",
-    registration: "Fee: 2000 per team.",
+    about: "Join us for an exciting and hands-on workshop where you'll dive into the world of robotics! In this 2-day event, you will learn how to build and program an autonomous robot using Arduino and sensors. Objective: To introduce students to autonomous robotics concepts and how they think and move. To provide hands-on experience with Arduino, sensors and embedded programming. To Strengthen logical thinking and problem-solving through hands-on challenges, teamwork, and competitive learning. To bridge theoretical classroom concepts with real-world robotics applications.",
+    registration: "Team Size: 1–3 participants per team. Eligibility: Open to all students from BE, BCA, MCA, BSc IT, MSc IT, and related tech disciplines. Registration will be based on first come first serve. Limited seats are available. Fees: 2000 INR/Team (includes robotics kit/team, workshop, competition, other materials). What to Bring: Laptop, charger, and enthusiasm!",
     rules: [
-      "Bring your own laptop.",
-      "Kits will be provided.",
-      "Full day workshop."
+      "Event Code of Conduct:",
+      "Respect the instructions of the workshop instructors.",
+      "Participants must not engage in any unfair practices or disruptions during the competition.",
+      "No refund will be entertained in the case of disqualification.",
+      "Any participant seen tampering with the event setup or violating the rules will be disqualified.",
+      "Other rules and regulations will be announced on the day of events."
     ],
     rounds: [
-      "Session 1: Introduction to Robotics",
-      "Session 2: Hands-on Building",
-      "Session 3: Programming & Testing",
-      "Competition: Final Run"
+      "Session 1: Introduction",
+      "Session 2: Hardware Hands-on",
+      "Session 3: Programming",
+      "Session 4: Robot Assembly",
+      "Session 5: Experimenting with robot and Testing",
+      "Session 6: Robotics challenge Competition"
     ],
-    venue: "Main Auditorium",
-    time: "9:00 AM - 5:00 PM",
-    prizes: "Certificates and Kits",
-    facultyCoordinator: "Prof. Robotics Expert",
-    studentCoordinators: ["Student Lead 1", "Student Lead 2"],
-    contact: "Coordinator - 9998887776"
+    venue: "Room No. 208",
+    time: "Day 1: 8:30 AM to 6:00 PM | Day 2: 8:30 AM to 1:30 PM",
+    prizes: "Winners will be awarded with cash and attractive prizes.",
+    facultyCoordinator: "Prof. Priyanka D. Rathod (8154841041)",
+    studentCoordinators: ["Smit Usdadiya (9726507279)", "Vaghasiya Janvi (8160355768)"],
+    contact: "Shyam Savaliya (7284189094)"
   },
 
   "robotics-challenge": {
     name: "Robotics Challenge",
-    tagline: "The Ultimate Test of Metal and Code",
-    poster: require("../assets/robotics-challenge.jpg"),
+    tagline: "Drop into a high-tech battleground",
+    poster: require("../assets/robotics-challenge.png"),
     fee: "150",
-    about: "A challenging competition testing your robot's capabilities in navigation and task execution.",
-    registration: "Fee: 150 per team.",
+    about: "Drop into a high-tech battleground where code is your weapon and creativity is your power-up. Learn to build and program your own autonomous robot using Arduino and sensors, completing hands-on missions that level up your skills from rookie to tech warrior.",
+    registration: "Team Size: 1–3 participants per team. Eligibility: Open to all students from BE, BCA, MCA, BSc IT, MSc IT, and related tech disciplines. Fees: 2000 INR/Team (includes kit+workshop). Competition ONLY: 150 INR/Team. What to Bring: Laptop, charger, and enthusiasm!",
     rules: [
-      "Robot must fit within dimensions.",
-      "No manual intervention during run.",
-      "Points for speed and accuracy."
+      "Competition Type: Autonomous Robot (no manual control allowed).",
+      "Robot Requirements (for competition-only participants):",
+      "Must use Arduino UNO/Mega.",
+      "Must use BO motor upto 300 RPM with Dual H-bridge.",
+      "Must be fully autonomous. No external wireless control (e.g., Bluetooth/Wi-Fi).",
+      "Judging Criteria: Completion time, Accuracy, Stability, Innovation.",
+      "Event Code of Conduct: Same as workshop rules."
     ],
     rounds: [
-      "Round 1: Obstacle Course",
-      "Round 2: Precision Task"
+      "Session 1: Introduction",
+      "Session 2: Hardware Hands-on",
+      "Session 3: Programming",
+      "Session 4: Robot Assembly",
+      "Session 5: Experimenting with robot and Testing",
+      "Session 6: Robotics challenge Competition"
     ],
-    venue: "Quadrangle",
-    time: "10:00 AM onwards",
-    prizes: "Cash Prizes and Trophies",
-    facultyCoordinator: "Prof. Mechanical Dept",
-    studentCoordinators: ["Student A", "Student B"],
-    contact: "Coordinator - 8887776665"
+    venue: "Room No. 208",
+    time: "Day 1: 8:30 AM to 6:00 PM | Day 2: 8:30 AM to 1:30 PM",
+    prizes: "Winners will be awarded with cash and attractive prizes.",
+    facultyCoordinator: "Prof. Priyanka D. Rathod (8154841041)",
+    studentCoordinators: ["Smit Usdadiya (9726507279)", "Vaghasiya Janvi (8160355768)"],
+    contact: "Shyam Savaliya (7284189094)"
   },
 
   // ===== START OF GENERIC MISSING EVENTS =====

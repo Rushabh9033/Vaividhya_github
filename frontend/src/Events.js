@@ -40,8 +40,8 @@ import CRICKETCARNIVAL from "./assets/CRICKETCARNIVAL.jpeg";
 import DREAMTODEAL from "./assets/DREAMTODEAL.png";
 import TREASUREHUNT from "./assets/TREASUREHUNT.jpeg";
 import SQUIDGAME from "./assets/SQUIDGAMEINTECHWORLD.jpeg"
-import AUTONOMOUSROBOTICS from "./assets/autonomous-robotics-workshop.jpg";
-import ROBOTICSCHALLENGE from "./assets/robotics-challenge.jpg";
+import AUTONOMOUSROBOTICS from "./assets/autonomous-robotics-workshop.png";
+import ROBOTICSCHALLENGE from "./assets/robotics-challenge.png";
 
 // Additional Imports
 import REALLIFEAMONGUS from "./assets/REALLIFEAMONGUS.jpeg";
