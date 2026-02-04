@@ -39,8 +39,6 @@ import LUDOKING from "../assets/LUDOKING.jpeg";
 import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop.png";
 import ROBOTICSCHALLENGE from "../assets/robotics-challenge.png";
 import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
-import BRIDGEBATTLE from "../assets/BRIDGEBATTLE.jpeg";
-import ESCAPEROOM from "../assets/ESCAPEROOM.png";
 
 const eventDetailsData = {
   "web-treasure-hunting": {
