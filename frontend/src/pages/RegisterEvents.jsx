@@ -52,7 +52,7 @@ function RegisterEvents() {
           // Try to find matching local event to get the poster/image
           // Match by ID (loose for string/int), Slug (if event_id is slug), or Name
           const localMatch = eventsData.find(e =>
-            e.id === event.event_id ||
+            String(e.id) === String(event.event_id) ||
             e.slug === event.event_id ||
             e.name === event.event_name
           );
