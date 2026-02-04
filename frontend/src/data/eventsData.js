@@ -16,7 +16,7 @@ import REALIFEAMONGUS from "../assets/REALLIFEAMONGUS.jpeg";
 import REVERSECODING from "../assets/REVERSECODING.png";
 import ROBOFOOTBALLCLASH from "../assets/ROBOFOOTBALLCLASH.jpeg";
 import ROBOWARPRO from "../assets/ROBOWARPRO.png";
-import WEBTREASUREHUNTING from "../assets/WEB TREASURE HUNTING.png";
+import WEBTREASUREHUNTING from "../assets/WEB-TREASURE-HUNTING.png";
 import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 import AISSHAPECIPHER from "../assets/AISSHAPECIPHER.png";
 import AIQUIZ from "../assets/AIQUIZ.jpeg";
@@ -42,7 +42,7 @@ import FREEFIREPRO from "../assets/FREEFIREPRO.png";
 import LUDOKING from "../assets/LUDOKING.jpeg";
 import MINIMUSTIFORMIN from "../assets/MINIMUSTIFOR1MIN.png";
 import MYSTICMOVER from "../assets/MYSTICMOVER.jpeg";
-import SPINMANIA from "../assets/SPIN MANIA.jpeg";
+import SPINMANIA from "../assets/SPIN-MANIA.jpeg";
 import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop.jpg";
 import ROBOTICSCHALLENGE from "../assets/robotics-challenge.jpg";
 
