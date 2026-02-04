@@ -86,17 +86,36 @@ function RegisterEvents() {
   );
 
   // ================= TOGGLE SELECTION =================
-  function toggleEvent(eventId) {
+  function toggleEvent(eventId, category) {
     setSelectedIds(prev => {
+      // 1. Uncheck: Always allow
       if (prev.includes(eventId)) {
         return prev.filter(id => id !== eventId);
       }
 
-      if (prev.length >= 3) {
-        showToast("You can select a maximum of 3 events.", "warning");
+      // 2. Count current selections by category
+      const currentEvents = events.filter(e => prev.includes(e.event_id));
+      const techCount = currentEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
+      const nonTechCount = currentEvents.filter(e => !TECHNICAL_CATEGORIES.includes(e.category)).length;
+      const isTech = TECHNICAL_CATEGORIES.includes(category);
+
+      // 3. Validation Rules
+      if (prev.length >= 5) {
+        showToast("Maximum 5 events allowed in total.", "warning");
         return prev;
       }
 
+      if (isTech && techCount >= 3) {
+        showToast("Maximum 3 Technical events allowed.", "warning");
+        return prev;
+      }
+
+      if (!isTech && nonTechCount >= 2) {
+        showToast("Maximum 2 Non-Technical events allowed.", "warning");
+        return prev;
+      }
+
+      // 4. Proceed
       return [...prev, eventId];
     });
   }
@@ -158,9 +177,10 @@ function RegisterEvents() {
           <h1>Select Your Events</h1>
 
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto">
-            <p className="font-bold">🎉 Offers</p>
+            <p className="font-bold">🎉 Offers & Rules</p>
             <ul className="list-disc ml-5">
-              <li>Select maximum 3 events</li>
+              <li>Maximum 5 events total</li>
+              <li>Max 3 Technical + Max 2 Non-Technical</li>
               <li>₹50 & ₹100 events available</li>
             </ul>
           </div>
@@ -229,7 +249,7 @@ function EventCard({ event, selectedIds, onToggle }) {
         type="checkbox"
         checked={isSelected}
         disabled={isMaxReached}
-        onChange={() => onToggle(event.event_id)}
+        onChange={() => onToggle(event.event_id, event.category)}
       />
       <img
         src={event.image}
