@@ -45,7 +45,7 @@ const eventDetailsData = {
     name: "Web Treasure Hunting",
     tagline: "Where searching becomes solving.",
     poster: WEBTREASUREHUNTING,
-    fee: "50",
+    fee: "0",
     about: "Web Treasure Hunting is a problem-solving event where participants explore websites to find hidden clues and flags using logical thinking and analytical skills.",
     registration: "The participation fee for individuals is free.",
     rules: [
@@ -76,7 +76,7 @@ const eventDetailsData = {
     poster: BLINDCODE,
     fee: "50",
     about: "A test of memory and logic where you must write C code with the monitor turned off.",
-    registration: "The participation fee for individuals is 40",
+    registration: "The participation fee for individuals is 50",
     rules: [
       "Participation is strictly individual.",
       "Each participant will be given one C programming problem at the start of the event.",
@@ -107,7 +107,7 @@ const eventDetailsData = {
     poster: REVERSECODING,
     fee: "50",
     about: "Analyze the output and write the code that generates it. A test of reverse engineering skills.",
-    registration: "The participation fee for individuals is 40",
+    registration: "The participation fee for individuals is 50",
     rules: [
       "Participation is individual only.",
       "Each participant will be provided with a fixed output and optional sample input/constraints.",
@@ -136,7 +136,7 @@ const eventDetailsData = {
     poster: BULLVSBEAR,
     fee: "50",
     about: "A high-energy trading game where teams react to constant market news and try to build the highest portfolio value.",
-    registration: "The participation fee is 100",
+    registration: "The participation fee is 50",
     rules: [
       "A high-energy trading game where teams react to constant market news.",
       "Each team must consist of 2 members.",
@@ -210,9 +210,9 @@ const eventDetailsData = {
     name: "Squid Game: In Tech World",
     tagline: "Trust No One. Win at all Cost.",
     poster: SQUIDGAME,
-    fee: "FREE EVENT",
+    fee: "50",
     about: "A competitive themed event where participants face multiple challenge-based rounds with suspenseful gameplay.",
-    registration: "FREE FOR FIRST 150 PARTICIPANT WHO PARTICIPATE IN MINIMUM 2 EVENTS.",
+    registration: "Fee: 50 per participant.",
     rules: [
       "Battle consists of three themed rounds.",
       "Solo participants compete individually.",
@@ -440,7 +440,7 @@ const eventDetailsData = {
     poster: BGMIDOMINATION,
     fee: "50",
     about: "High-intensity squad battle in custom classic matches.",
-    registration: "Fee: 200 per team (4 players).",
+    registration: "Fee: 50 per participant.",
     rules: [
       "Mobile devices only. No emulators/hacks.",
       "Map: Classic.",
