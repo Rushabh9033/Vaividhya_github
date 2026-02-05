@@ -241,7 +241,7 @@ function EventCard({ event, selectedIds, onToggle }) {
       <h3>{event.event_name}</h3>
       <p className="event-category">{event.category}</p>
       <p className="event-fee">
-        {isRestricted ? <span className="text-red-500 font-bold">Walk-in Only</span> : `₹${event.price}`}
+        {event.price == 0 ? "Free" : `₹${event.price}`}
       </p>
     </label>
   );
