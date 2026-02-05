@@ -218,15 +218,17 @@ function RegisterEvents() {
 // ================= EVENT CARD =================
 function EventCard({ event, selectedIds, onToggle }) {
   const isSelected = selectedIds.includes(event.event_id);
+  const isRestricted = event.event_id === "web-treasure-hunting";
   const isMaxReached = selectedIds.length >= 3 && !isSelected;
+  const isDisabled = isMaxReached || isRestricted;
 
   return (
-    <label className={`event-select-card ${isSelected ? "selected" : ""}`}>
+    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isRestricted ? "opacity-60 cursor-not-allowed" : ""}`}>
       <input
         type="checkbox"
         checked={isSelected}
-        disabled={isMaxReached}
-        onChange={() => onToggle(event.event_id, event.category)}
+        disabled={isDisabled}
+        onChange={() => !isRestricted && onToggle(event.event_id, event.category)}
       />
       <img
         src={event.image}
@@ -238,7 +240,9 @@ function EventCard({ event, selectedIds, onToggle }) {
       />
       <h3>{event.event_name}</h3>
       <p className="event-category">{event.category}</p>
-      <p className="event-fee">₹{event.price}</p>
+      <p className="event-fee">
+        {isRestricted ? <span className="text-red-500 font-bold">Walk-in Only</span> : `₹${event.price}`}
+      </p>
     </label>
   );
 }
