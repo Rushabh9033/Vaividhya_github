@@ -333,7 +333,7 @@ const eventDetailsData = {
     contact: "Parth Narola — 97731 49639"
   },
 
-  "robowar-pro": {
+  "robo-war-pro": {
     name: "RoboWar PRO",
     tagline: "No Mercy. Only Metal.",
     poster: ROBOWARPRO,
