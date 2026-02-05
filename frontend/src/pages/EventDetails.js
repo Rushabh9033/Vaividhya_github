@@ -31,33 +31,71 @@ function EventDetails() {
         <div className="event-details-container">
 
           {/* EVENT HERO */}
-<div className="event-hero">
+          <div className="event-hero">
 
-  <div className="event-hero-poster">
-    <img
-      src={event.poster || "/placeholder.png"}
-      alt={event.name}
-    />
-  </div>
+            <div className="event-hero-poster">
+              <img
+                src={event.poster || "/placeholder.png"}
+                alt={event.name}
+              />
+            </div>
 
-  <div className="event-hero-content">
-    <h1 className="event-title">{event.name}</h1>
-    <p className="event-tagline">“{event.tagline}”</p>
+            <div className="event-hero-content">
+              <h1 className="event-title">{event.name}</h1>
+              <p className="event-tagline">“{event.tagline}”</p>
 
-    <div className="event-meta">
-      <span className="event-fee">₹ {event.fee}</span>
-    </div>
-<a
-  href={`/register?event=${eventId}`}
-  className="event-register-btn"
->
-  Register Now
-</a>
+              <div className="event-meta">
+                <span className="event-fee">₹ {event.fee}</span>
+              </div>
+              <a
+                href={`/register?event=${eventId}`}
+                className="event-register-btn"
+              >
+                Register Now
+              </a>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
+
+          {/* SPEAKER PROFILE (For Workshops) */}
+          {event.speaker && (
+            <div className="event-section">
+              <h2>Speaker Profile</h2>
+              <div className="bg-gray-100 p-6 rounded-lg border-l-4 border-blue-500">
+                <h3 className="text-xl font-bold text-blue-900">{event.speaker.name}</h3>
+                <p className="font-semibold text-gray-700 mb-2">{event.speaker.designation}</p>
+
+                <div className="mb-4">
+                  <h4 className="font-bold text-gray-800">Academic Background:</h4>
+                  <ul className="list-disc ml-5 text-gray-700">
+                    {event.speaker.academic.map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-bold text-gray-800">About the Speaker:</h4>
+                  <p className="text-gray-700">{event.speaker.about}</p>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-bold text-gray-800">Workshop Focus:</h4>
+                  <p className="text-gray-700">{event.speaker.focus}</p>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-bold text-gray-800">Teaching Philosophy:</h4>
+                  <p className="text-gray-700 italic">"{event.speaker.philosophy}"</p>
+                </div>
+
+                <div className="mt-4 p-4 bg-white rounded shadow-sm">
+                  <p className="text-blue-800 font-serif text-lg text-center">"{event.speaker.quote}"</p>
+                </div>
+
+              </div>
+            </div>
+          )}
 
           {/* ABOUT */}
           <div className="event-section">

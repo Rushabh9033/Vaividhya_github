@@ -16,7 +16,6 @@ import PUZZLEHUNT from "../assets/PUZZLEHUNT.png";
 import BREAKTHEBOT from "../assets/BREAKTHEBOT.png";
 import BGMIDOMINATION from "../assets/BGMI.jpeg";
 import BRAINBATTLE from "../assets/AIQUIZ.jpeg";
-import LOGOHUNT from "../assets/LOGOHUNT.jpeg";
 import MYSTICMOVER from "../assets/MYSTICMOVER.jpeg";
 import CASECATALYST from "../assets/CASECATALYST.png";
 import ADARENA from "../assets/ADARENA.jpeg";
@@ -36,8 +35,8 @@ import AIQUZ from "../assets/AIQUIZ.jpeg";
 import AISSHAPECIPHER from "../assets/AISSHAPECIPHER.png";
 import FREEFIREPRO from "../assets/FREEFIREPRO.png";
 import LUDOKING from "../assets/LUDOKING.jpeg";
-import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop.png";
-import ROBOTICSCHALLENGE from "../assets/robotics-challenge.png";
+import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop-final.jpg";
+import ROBOTICSCHALLENGE from "../assets/robotics-challenge-final.jpg";
 import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 
 const eventDetailsData = {
@@ -653,33 +652,40 @@ const eventDetailsData = {
 
   "autonomous-robotics-workshop": {
     name: "Autonomous Robotics Workshop",
-    tagline: "Dive into the world of robotics!",
+    tagline: "Race into the Future: Learn, Build, Code, Compete!",
     poster: AUTONOMOUSROBOTICS,
     fee: "2000",
-    about: "Join us for an exciting and hands-on workshop where you'll dive into the world of robotics! In this 2-day event, you will learn how to build and program an autonomous robot using Arduino and sensors. Objective: To introduce students to autonomous robotics concepts and how they think and move. To provide hands-on experience with Arduino, sensors and embedded programming. To Strengthen logical thinking and problem-solving through hands-on challenges, teamwork, and competitive learning. To bridge theoretical classroom concepts with real-world robotics applications.",
-    registration: "Team Size: 1–3 participants per team. Eligibility: Open to all students from BE, BCA, MCA, BSc IT, MSc IT, and related tech disciplines. Registration will be based on first come first serve. Limited seats are available. Fees: 2000 INR/Team (includes robotics kit/team, workshop, competition, other materials). What to Bring: Laptop, charger, and enthusiasm!",
+    about: "A comprehensive 2-day workshop where you will build your own autonomous robot from scratch, write real Arduino code, and compete in a live challenge.",
+
+    // NEW SPEAKER DATA
+    speaker: {
+      name: "Prof. Chauhan Bhavikkumar Ajitkumar",
+      designation: "Founder of Expensive Engineers, Assistant Professor - MScIT, SSASIT",
+      academic: [
+        "Masters in Computer Applications from Nirma University",
+        "B.Tech. in Mechatronics from Ganpat University"
+      ],
+      about: "Prof. Chauhan Bhavik is an accomplished academic and entrepreneur, with a strong background in Mechatronics and Computer Applications. As the founder of Expensive Engineers, he brings a wealth of knowledge in both practical and theoretical aspects of technology, especially in fields like robotics, cybersecurity, and machine learning. Currently serving as an Assistant Professor in the MScIT program at SSASIT, he is dedicated to mentoring students through complex technical concepts.",
+      focus: "In this session, Prof. Chauhan Bhavik will guide participants through a mix of theory and hands-on activities. You will learn about robotics systems, sensors, algorithms, and how to program robots for autonomous navigation. The workshop concludes with a real-time competition.",
+      philosophy: "Education should not only focus on technical skills but also encourage leadership and self-awareness. He integrates technical know-how with personal development, emphasizing creativity, problem-solving, and ethical practices.",
+      quote: "My mission is to inspire my students to become not just skilled professionals but leaders who can innovate and contribute meaningfully."
+    },
+
+    registration: "Current Students of SSASIT are allowed.",
     rules: [
-      "Event Code of Conduct:",
-      "Respect the instructions of the workshop instructors.",
-      "Participants must not engage in any unfair practices or disruptions during the competition.",
-      "No refund will be entertained in the case of disqualification.",
-      "Any participant seen tampering with the event setup or violating the rules will be disqualified.",
-      "Other rules and regulations will be announced on the day of events."
+      "Duration: 2 Days (20, 21 February 2026)",
+      "Eligibility: Engineering, BCA, MCA, BScIT, MScIT",
+      "You build your own autonomous robot.",
+      "You write real Arduino code.",
+      "You see your robot move because of your logic."
     ],
-    rounds: [
-      "Session 1: Introduction",
-      "Session 2: Hardware Hands-on",
-      "Session 3: Programming",
-      "Session 4: Robot Assembly",
-      "Session 5: Experimenting with robot and Testing",
-      "Session 6: Robotics challenge Competition"
-    ],
-    venue: "Room No. 208",
-    time: "Day 1: 8:30 AM to 6:00 PM | Day 2: 8:30 AM to 1:30 PM",
-    prizes: "Winners will be awarded with cash and attractive prizes.",
-    facultyCoordinator: "Prof. Priyanka D. Rathod (8154841041)",
-    studentCoordinators: ["Smit Usdadiya (9726507279)", "Vaghasiya Janvi (8160355768)"],
-    contact: "Shyam Savaliya (7284189094)"
+    rounds: ["Day 1: Theory & Building", "Day 2: Coding & Competition"],
+    venue: "SSASIT Campus",
+    time: "10:00 AM onwards",
+    prizes: "Certificates for all participants + Excellence Awards for winners.",
+    facultyCoordinator: "Prof. Chauhan Bhavikkumar",
+    studentCoordinators: ["TBD"],
+    contact: "contact@vaividhya.in"
   },
 
   "robotics-challenge": {
