@@ -16,6 +16,7 @@ import PUZZLEHUNT from "../assets/PUZZLEHUNT.png";
 import BREAKTHEBOT from "../assets/BREAKTHEBOT.png";
 import BGMIDOMINATION from "../assets/BGMI.jpeg";
 import BRAINBATTLE from "../assets/AIQUIZ.jpeg";
+import LOGOHUNT from "../assets/LOGOHUNT.jpeg";
 import MYSTICMOVER from "../assets/MYSTICMOVER.jpeg";
 import CASECATALYST from "../assets/CASECATALYST.png";
 import ADARENA from "../assets/ADARENA.jpeg";
