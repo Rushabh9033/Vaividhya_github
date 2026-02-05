@@ -47,7 +47,10 @@ async def get_registration(id: str):
             events_list.append(e)
         
         reg["event_details"] = events_list
-        reg["total_amount"] = sum(e.get("price", 0) for e in events_list)
+        total = sum(e.get("price", 0) for e in events_list)
+        if len(events_list) >= 3:
+            total -= 30
+        reg["total_amount"] = total
     else:
         reg["event_details"] = []
         reg["total_amount"] = 0
