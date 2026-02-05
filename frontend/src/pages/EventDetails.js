@@ -89,8 +89,8 @@ function EventDetails() {
                   <p className="text-gray-700 italic">"{event.speaker.philosophy}"</p>
                 </div>
 
-                <div className="mt-4 p-4 bg-white rounded shadow-sm">
-                  <p className="text-blue-800 font-serif text-lg text-center">"{event.speaker.quote}"</p>
+                <div className="mt-4 p-4 rounded border border-blue-500/30 bg-blue-900/20">
+                  <p className="text-blue-200 font-serif text-lg text-center italic">"{event.speaker.quote}"</p>
                 </div>
 
               </div>
