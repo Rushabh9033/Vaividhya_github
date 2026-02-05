@@ -18,8 +18,11 @@ async def register_user(data: Registration):
         raise HTTPException(status_code=400, detail="Enrollment number already registered")
 
     # Prepare document
+    now = datetime.utcnow()
     doc = data.dict()
-    doc["created_at"] = datetime.utcnow()
+    doc["created_at"] = now
+    doc["register_date"] = now.strftime("%Y-%m-%d")
+    doc["register_time"] = now.strftime("%H:%M:%S")
     doc["payment_status"] = "PENDING"
     doc["selected_events"] = [] # Initialize empty
     doc["total_amount"] = 0
