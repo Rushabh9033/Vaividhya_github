@@ -52,9 +52,9 @@ async def get_registration(id: str):
         # Calculate Total
         raw_total = sum(e.get("price", 0) for e in events_list)
         
-        # Discount Rule: 30% OFF if 3 or more events
+        # Discount Rule: Flat ₹30 OFF if 3 or more events
         if len(events_list) >= 3:
-            reg["total_amount"] = int(raw_total * 0.70) # 30% Discount
+            reg["total_amount"] = raw_total - 30 # Flat ₹30 Discount
         else:
             reg["total_amount"] = raw_total
     else:
