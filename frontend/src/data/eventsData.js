@@ -42,8 +42,8 @@ import LUDOKING from "../assets/LUDOKING.jpeg";
 import MINIMUSTIFORMIN from "../assets/MINIMUSTIFOR1MIN.png";
 import MYSTICMOVER from "../assets/MYSTICMOVER.jpeg";
 import SPINMANIA from "../assets/SPIN-MANIA.jpeg";
-import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop.png";
-import ROBOTICSCHALLENGE from "../assets/robotics-challenge.png";
+import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop-final.jpg";
+import ROBOTICSCHALLENGE from "../assets/robotics-challenge-final.jpg";
 
 /* ===== EVENTS DATA ===== */
 
