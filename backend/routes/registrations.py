@@ -47,7 +47,19 @@ async def get_registration(id: str):
             events_list.append(e)
         
         reg["event_details"] = events_list
-        reg["total_amount"] = sum(e.get("price", 0) for e in events_list)
+        reg["event_details"] = events_list
+        
+        # Calculate Total with Discount Logic
+        # Rule: 3 Events of ₹50 = ₹120 (Save ₹30)
+        price_50_count = sum(1 for e in events_list if e.get("price", 0) == 50)
+        other_prices_sum = sum(e.get("price", 0) for e in events_list if e.get("price", 0) != 50)
+        
+        sets_of_3 = price_50_count // 3
+        remainder_50 = price_50_count % 3
+        
+        discounted_50_total = (sets_of_3 * 120) + (remainder_50 * 50)
+        
+        reg["total_amount"] = other_prices_sum + discounted_50_total
     else:
         reg["event_details"] = []
         reg["total_amount"] = 0
