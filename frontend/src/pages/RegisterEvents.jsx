@@ -158,7 +158,7 @@ function RegisterEvents() {
               <li>Maximum 5 events total</li>
               <li>Max 3 Technical + Max 2 Non-Technical</li>
               <li>₹50 & ₹100 events available</li>
-              <li className="text-red-600 font-bold">Offer: 3 Events of ₹50 @ ₹120 Only!</li>
+              <li className="text-red-600 font-bold">Offer: Flat 30% OFF on 3+ Events!</li>
             </ul>
           </div>
 
