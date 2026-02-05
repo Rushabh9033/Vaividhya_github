@@ -9,6 +9,10 @@ router = APIRouter()
 
 @router.post("/")
 async def register_user(data: Registration):
+    # Normalize inputs (Case Insensitive)
+    data.email = data.email.lower()
+    data.enrollment_no = data.enrollment_no.lower()
+
     # Check for existing email
     if await registrations_collection.find_one({"email": data.email}):
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -62,11 +66,36 @@ async def get_registration(id: str):
 
 @router.put("/{id}/events")
 async def update_events(id: str, events: list[str] = Body(..., embed=True)):
+    # 1. Calculate New Total Amount
+    from database import events_collection
+    
+    # Fetch price/fee for selected events
+    # Use $in query to get all event docs
+    events_metrics = await events_collection.find({"event_id": {"$in": events}}).to_list(length=100)
+    
+    total = 0
+    for e in events_metrics:
+        # Handle both 'price' and 'fee' keys safely
+        total += e.get("price", e.get("fee", 0))
+        
+    # Discount Logic
+    if len(events) >= 3:
+        total -= 30
+        if total < 0: total = 0
+
+    # 2. Update DB AND Reset Payment Status (Security Fix)
     await registrations_collection.update_one(
         {"_id": ObjectId(id)},
-        {"$set": {"selected_events": events}}
+        {"$set": {
+            "selected_events": events,
+            "total_amount": total,
+            "payment_status": "PENDING", # Force Reset
+            "approved_by": None,
+            "approved_at": None,
+            "approved_team": None
+        }}
     )
-    return {"message": "Events updated"}
+    return {"message": "Events updated, Amount recalculated. Payment status reset to PENDING."}
 
 @router.patch("/{id}/mark-paid")
 async def mark_paid(id: str, data: dict = Body(...)):
@@ -74,7 +103,6 @@ async def mark_paid(id: str, data: dict = Body(...)):
     update_data = {
         "payment_status": "PAID",
         "approved_by": data.get("admin_name", "Unknown"),
-        "approved_dept": data.get("admin_dept", "Unknown"),
         "approved_at": datetime.utcnow()
     }
     
@@ -91,7 +119,6 @@ async def mark_unpaid(id: str):
         {"$set": {
             "payment_status": "PENDING",
             "approved_by": None,
-            "approved_dept": None,
             "approved_at": None
         }}
     )
