@@ -55,7 +55,9 @@ const eventsData = [
     slug: "ai-shape-cipher",
     category: "Technical",
     poster: AISSHAPECIPHER,
-    fee: 100,
+    fee: 50,
+    min_members: 2,
+    max_members: 3,
   },
   {
     id: 27,
@@ -63,7 +65,9 @@ const eventsData = [
     slug: "ai-quiz",
     category: "Technical",
     poster: AIQUIZ,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 28,
@@ -72,6 +76,8 @@ const eventsData = [
     category: "Technical",
     poster: BRAINBOOSTERMATH,
     fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 29,
@@ -79,7 +85,9 @@ const eventsData = [
     slug: "case-catalyst",
     category: "Technical",
     poster: CASECATALYST,
-    fee: 100,
+    fee: 50,
+    min_members: 3,
+    max_members: 4,
   },
   {
     id: 30,
@@ -87,7 +95,9 @@ const eventsData = [
     slug: "cricket-carnival",
     category: "Non-Technical",
     poster: CRICKETCARNIVAL,
-    fee: 100,
+    fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
   {
     id: 31,
@@ -96,6 +106,8 @@ const eventsData = [
     category: "Technical",
     poster: FOLDANDBUILD,
     fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
   {
     id: 32,
@@ -103,7 +115,9 @@ const eventsData = [
     slug: "quantum-quest-physics",
     category: "Technical",
     poster: QUANTUMQUESTPHYSICS,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 33,
@@ -111,7 +125,9 @@ const eventsData = [
     slug: "robo-mind-matrix",
     category: "Technical",
     poster: ROBOMINDMATRIX,
-    fee: 150,
+    fee: 50,
+    min_members: 4,
+    max_members: 4,
   },
   {
     id: 34,
@@ -119,7 +135,9 @@ const eventsData = [
     slug: "robo-rush",
     category: "Technical",
     poster: ROBORUSH,
-    fee: 150,
+    fee: 100,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 35,
@@ -128,6 +146,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: SURVIVORDROP,
     fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
   {
     id: 36,
@@ -135,7 +155,9 @@ const eventsData = [
     slug: "the-chemical-detective",
     category: "Technical",
     poster: THECHEMICALDETECTIVE,
-    fee: 100,
+    fee: 50,
+    min_members: 3,
+    max_members: 3,
   },
   {
     id: 37,
@@ -144,6 +166,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: TREASUREHUNT,
     fee: 50,
+    min_members: 3,
+    max_members: 3,
   },
   {
     id: 38,
@@ -152,6 +176,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: WORDWIZARDENGLISH,
     fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
 
   {
@@ -160,7 +186,9 @@ const eventsData = [
     slug: "adrena",
     category: "Technical",
     poster: ADRENA,
-    fee: 100,
+    fee: 50,
+    min_members: 2,
+    max_members: 4,
   },
   {
     id: 2,
@@ -168,7 +196,9 @@ const eventsData = [
     slug: "ai-hunting",
     category: "Technical",
     poster: AIHUNTING,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 3,
@@ -176,7 +206,9 @@ const eventsData = [
     slug: "ai-prompt-battle",
     category: "Technical",
     poster: AIPROMPTBATTLE,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 4,
@@ -184,7 +216,9 @@ const eventsData = [
     slug: "biz-brain-challenge",
     category: "Technical",
     poster: BIZBRAINCHALLENGE,
-    fee: 100,
+    fee: 50,
+    min_members: 2,
+    max_members: 3,
   },
   {
     id: 5,
@@ -192,7 +226,9 @@ const eventsData = [
     slug: "blind-code",
     category: "Technical",
     poster: BLINDCODE,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 6,
@@ -200,7 +236,9 @@ const eventsData = [
     slug: "break-the-bot",
     category: "Technical",
     poster: BREAKTHEBOT,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 7,
@@ -209,6 +247,8 @@ const eventsData = [
     category: "Technical",
     poster: BRIDGEBATTLE,
     fee: 100,
+    min_members: 2,
+    max_members: 4,
   },
   {
     id: 8,
@@ -216,7 +256,9 @@ const eventsData = [
     slug: "drone-dash",
     category: "Technical",
     poster: DRONEDASH,
-    fee: 150,
+    fee: 100,
+    min_members: 1,
+    max_members: 2,
   },
   {
     id: 9,
@@ -224,7 +266,9 @@ const eventsData = [
     slug: "escape-room",
     category: "Technical",
     poster: ESCAPEROOM,
-    fee: 100,
+    fee: 50,
+    min_members: 2,
+    max_members: 4,
   },
   {
     id: 10,
@@ -233,6 +277,8 @@ const eventsData = [
     category: "Technical",
     poster: LOGOHUNT,
     fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 11,
@@ -241,6 +287,8 @@ const eventsData = [
     category: "Technical",
     poster: PUZZLEHUNT,
     fee: 50,
+    min_members: 4,
+    max_members: 4,
   },
   {
     id: 12,
@@ -248,7 +296,9 @@ const eventsData = [
     slug: "real-life-among-us",
     category: "Technical",
     poster: REALIFEAMONGUS,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 13,
@@ -256,7 +306,9 @@ const eventsData = [
     slug: "reverse-coding",
     category: "Technical",
     poster: REVERSECODING,
-    fee: 100,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 14,
@@ -264,7 +316,9 @@ const eventsData = [
     slug: "robo-football-clash",
     category: "Technical",
     poster: ROBOFOOTBALLCLASH,
-    fee: 200,
+    fee: 100,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 15,
@@ -272,7 +326,9 @@ const eventsData = [
     slug: "robo-war-pro",
     category: "Technical",
     poster: ROBOWARPRO,
-    fee: 200,
+    fee: 100,
+    min_members: 4,
+    max_members: 4,
   },
   {
     id: 17,
@@ -280,7 +336,9 @@ const eventsData = [
     slug: "web-treasure-hunting",
     category: "Technical",
     poster: WEBTREASUREHUNTING,
-    fee: 100,
+    fee: 0,
+    min_members: 2,
+    max_members: 2,
   },
 
   // ===== NON-TECHNICAL EVENTS =====
@@ -290,7 +348,9 @@ const eventsData = [
     slug: "bgmi",
     category: "Non-Technical",
     poster: BGMI,
-    fee: 150,
+    fee: 50,
+    min_members: 4,
+    max_members: 4,
   },
   {
     id: 19,
@@ -299,6 +359,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: BULLVSBEAR,
     fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
   {
     id: 20,
@@ -307,6 +369,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: DREAMTODEAL,
     fee: 50,
+    min_members: 2,
+    max_members: 4,
   },
   {
     id: 21,
@@ -314,7 +378,9 @@ const eventsData = [
     slug: "free-fire-pro",
     category: "Non-Technical",
     poster: FREEFIREPRO,
-    fee: 150,
+    fee: 50,
+    min_members: 4,
+    max_members: 4,
   },
   {
     id: 22,
@@ -323,6 +389,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: LUDOKING,
     fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 23,
@@ -331,6 +399,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: MINIMUSTIFORMIN,
     fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 24,
@@ -339,6 +409,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: MYSTICMOVER,
     fee: 50,
+    min_members: 2,
+    max_members: 2,
   },
   {
     id: 25,
@@ -347,6 +419,8 @@ const eventsData = [
     category: "Non-Technical",
     poster: SPINMANIA,
     fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 39,
@@ -355,6 +429,8 @@ const eventsData = [
     category: "Technical",
     poster: AUTONOMOUSROBOTICS,
     fee: 2000,
+    min_members: 1,
+    max_members: 5,
   },
   {
     id: 40,
@@ -363,6 +439,8 @@ const eventsData = [
     category: "Technical",
     poster: ROBOTICSCHALLENGE,
     fee: 150,
+    min_members: 1,
+    max_members: 4,
   },
 ];
 

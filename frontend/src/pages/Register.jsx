@@ -46,6 +46,30 @@ function Register() {
     if (!phoneRegex.test(formData.phone)) {
       return "Phone number must be exactly 10 digits.";
     }
+
+    // Email Validation (Basic regex)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return "Please enter a valid email address.";
+    }
+
+    // Enrollment Validation (Min 5 chars)
+    if (!formData.enrollment || formData.enrollment.length < 5) {
+      return "Enrollment number is too short or invalid.";
+    }
+
+    // Year Validation (Must be slightly reasonable)
+    // If user enters 'First', '2nd', '3', etc, we just ensure it's not empty.
+    // But user asked for specific validation, let's ensure it has content.
+    if (!formData.year || formData.year.trim().length === 0) {
+      return "Year is required.";
+    }
+
+    // College Validation
+    if (!formData.college || formData.college.trim().length === 0) {
+      return "College name is required.";
+    }
+
     return null;
   }
 
