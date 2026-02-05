@@ -216,35 +216,36 @@ function RegisterEvents() {
 }
 
 // ================= EVENT CARD =================
-const isSelected = selectedIds.includes(event.event_id);
-const isRestricted = event.event_id === "web-treasure-hunting";
-// Fix: Check against MAX TOTAL (5), logic handles category splits
-const isMaxReached = selectedIds.length >= 5 && !isSelected;
-const isDisabled = isMaxReached || isRestricted;
+function EventCard({ event, selectedIds, onToggle }) {
+  const isSelected = selectedIds.includes(event.event_id);
+  const isRestricted = event.event_id === "web-treasure-hunting";
+  // Fix: Check against MAX TOTAL (5), logic handles category splits
+  const isMaxReached = selectedIds.length >= 5 && !isSelected;
+  const isDisabled = isMaxReached || isRestricted;
 
-return (
-  <label className={`event-select-card ${isSelected ? "selected" : ""} ${isRestricted ? "opacity-60 cursor-not-allowed" : ""}`}>
-    <input
-      type="checkbox"
-      checked={isSelected}
-      disabled={isDisabled}
-      onChange={() => !isRestricted && onToggle(event.event_id, event.category)}
-    />
-    <img
-      src={event.image}
-      alt={event.event_name}
-      onError={(e) => {
-        if (e.target.src.includes("placeholder.png")) return; // Prevent loop
-        e.target.src = "/placeholder.png";
-      }}
-    />
-    <h3>{event.event_name}</h3>
-    <p className="event-category">{event.category}</p>
-    <p className="event-fee">
-      {event.price == 0 ? "Free" : `₹${event.price}`}
-    </p>
-  </label>
-);
+  return (
+    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isRestricted ? "opacity-60 cursor-not-allowed" : ""}`}>
+      <input
+        type="checkbox"
+        checked={isSelected}
+        disabled={isDisabled}
+        onChange={() => !isRestricted && onToggle(event.event_id, event.category)}
+      />
+      <img
+        src={event.image}
+        alt={event.event_name}
+        onError={(e) => {
+          if (e.target.src.includes("placeholder.png")) return; // Prevent loop
+          e.target.src = "/placeholder.png";
+        }}
+      />
+      <h3>{event.event_name}</h3>
+      <p className="event-category">{event.category}</p>
+      <p className="event-fee">
+        {event.price == 0 ? "Free" : `₹${event.price}`}
+      </p>
+    </label>
+  );
 }
 
 export default RegisterEvents;
