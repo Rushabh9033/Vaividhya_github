@@ -182,7 +182,7 @@ const eventsData = [
 
   {
     id: 1,
-    name: "ADRENA",
+    name: "Ad Arena",
     slug: "adrena",
     category: "Technical",
     poster: ADRENA,
@@ -192,7 +192,7 @@ const eventsData = [
   },
   {
     id: 2,
-    name: "AI HUNTING",
+    name: "AI Hunting",
     slug: "ai-hunting",
     category: "Technical",
     poster: AIHUNTING,
@@ -202,7 +202,7 @@ const eventsData = [
   },
   {
     id: 3,
-    name: "AI PROMPT BATTLE",
+    name: "AI Prompt Battle",
     slug: "ai-prompt-battle",
     category: "Technical",
     poster: AIPROMPTBATTLE,
@@ -212,7 +212,7 @@ const eventsData = [
   },
   {
     id: 4,
-    name: "BIZ BRAIN CHALLENGE",
+    name: "Biz Brain Challenge",
     slug: "biz-brain-challenge",
     category: "Technical",
     poster: BIZBRAINCHALLENGE,
@@ -222,7 +222,7 @@ const eventsData = [
   },
   {
     id: 5,
-    name: "BLIND CODE",
+    name: "Blind Code",
     slug: "blind-code",
     category: "Technical",
     poster: BLINDCODE,
@@ -232,7 +232,7 @@ const eventsData = [
   },
   {
     id: 6,
-    name: "BREAK THE BOT",
+    name: "Break The Bot",
     slug: "break-the-bot",
     category: "Technical",
     poster: BREAKTHEBOT,
@@ -242,7 +242,7 @@ const eventsData = [
   },
   {
     id: 7,
-    name: "BRIDGE BATTLE",
+    name: "Bridge Battle",
     slug: "bridge-battle",
     category: "Technical",
     poster: BRIDGEBATTLE,
@@ -252,7 +252,7 @@ const eventsData = [
   },
   {
     id: 8,
-    name: "DRONE DASH",
+    name: "Drone Dash",
     slug: "drone-dash",
     category: "Technical",
     poster: DRONEDASH,
@@ -262,7 +262,7 @@ const eventsData = [
   },
   {
     id: 9,
-    name: "ESCAPE ROOM",
+    name: "Escape Room",
     slug: "escape-room",
     category: "Technical",
     poster: ESCAPEROOM,
@@ -272,7 +272,7 @@ const eventsData = [
   },
   {
     id: 10,
-    name: "LOGO HUNT",
+    name: "Logo Hunt",
     slug: "logo-hunt",
     category: "Technical",
     poster: LOGOHUNT,
@@ -282,7 +282,7 @@ const eventsData = [
   },
   {
     id: 11,
-    name: "PUZZLE HUNT",
+    name: "Puzzle Hunt",
     slug: "puzzle-hunt",
     category: "Technical",
     poster: PUZZLEHUNT,
@@ -292,7 +292,7 @@ const eventsData = [
   },
   {
     id: 12,
-    name: "REAL LIFE AMONG US",
+    name: "Real Life Among Us",
     slug: "real-life-among-us",
     category: "Technical",
     poster: REALIFEAMONGUS,
@@ -302,7 +302,7 @@ const eventsData = [
   },
   {
     id: 13,
-    name: "REVERSE CODING",
+    name: "Reverse Coding (C Language)",
     slug: "reverse-coding",
     category: "Technical",
     poster: REVERSECODING,
@@ -312,7 +312,7 @@ const eventsData = [
   },
   {
     id: 14,
-    name: "ROBO FOOTBALL CLASH",
+    name: "Robo Football Clash",
     slug: "robo-football-clash",
     category: "Technical",
     poster: ROBOFOOTBALLCLASH,
@@ -332,7 +332,7 @@ const eventsData = [
   },
   {
     id: 17,
-    name: "WEB TREASURE HUNTING",
+    name: "Web Treasure Hunting",
     slug: "web-treasure-hunting",
     category: "Technical",
     poster: WEBTREASUREHUNTING,
@@ -354,7 +354,7 @@ const eventsData = [
   },
   {
     id: 19,
-    name: "BULL VS BEAR",
+    name: "Bull Vs Bear",
     slug: "bull-vs-bear",
     category: "Non-Technical",
     poster: BULLVSBEAR,
@@ -364,7 +364,7 @@ const eventsData = [
   },
   {
     id: 20,
-    name: "DREAM TO DEAL",
+    name: "Dream to Deal",
     slug: "dream-to-deal",
     category: "Non-Technical",
     poster: DREAMTODEAL,
@@ -374,7 +374,7 @@ const eventsData = [
   },
   {
     id: 21,
-    name: "FREE FIRE PRO",
+    name: "Free Fire Pro",
     slug: "free-fire-pro",
     category: "Non-Technical",
     poster: FREEFIREPRO,
@@ -384,7 +384,7 @@ const eventsData = [
   },
   {
     id: 22,
-    name: "LUDO KING",
+    name: "Ludo King",
     slug: "ludo-king",
     category: "Non-Technical",
     poster: LUDOKING,
@@ -394,7 +394,7 @@ const eventsData = [
   },
   {
     id: 23,
-    name: "MINI MUSTI FOR 1 MIN",
+    name: "Mini Musti For 1 Min",
     slug: "mini-musti-for-1-min",
     category: "Non-Technical",
     poster: MINIMUSTIFORMIN,
@@ -404,7 +404,7 @@ const eventsData = [
   },
   {
     id: 24,
-    name: "MYSTIC MOVER",
+    name: "Mystic Mover",
     slug: "mystic-mover",
     category: "Non-Technical",
     poster: MYSTICMOVER,
@@ -414,7 +414,7 @@ const eventsData = [
   },
   {
     id: 25,
-    name: "SPIN MANIA",
+    name: "Spin Mania",
     slug: "spin-mania",
     category: "Non-Technical",
     poster: SPINMANIA,
