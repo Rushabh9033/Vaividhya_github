@@ -44,3 +44,14 @@ async def delete_registration(id: str):
 @router.get("/admin")
 def admin_check():
     return {"message": "Admin route working"}
+
+@router.get("/admin/event-stats")
+async def event_stats():
+    pipeline = [
+        {"$unwind": "$selected_events"},
+        {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    # to_list requires length, using 1000 to cover all possible events
+    stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
+    return stats
