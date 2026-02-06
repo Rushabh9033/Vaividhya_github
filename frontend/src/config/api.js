@@ -12,7 +12,7 @@ const getApiUrl = () => {
     }
 
     // Production fallback (if deployed)
-    return "https://vaividhya2k26-backend.onrender.com"; // Production Backend URL (Render)
+    return "https://vaividhya-backend.onrender.com"; // Production Backend URL (Verified Alive)
 };
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || getApiUrl();

@@ -82,7 +82,7 @@ async def event_stats():
         slug = event["event_id"]
         name = event["event_name"]
 
-        if slug.lower() in ["total paid", "total pending"]:
+        if "total" in slug.lower():
             continue
 
         count = stats_map.get(slug, 0)
@@ -105,7 +105,7 @@ async def event_stats():
     # 3. Handle ghost events
     for slug, count in stats_map.items():
         if slug not in processed_slugs:
-            if str(slug).lower() in ["total paid", "total pending"]:
+            if "total" in str(slug).lower():
                 continue
 
             stat_item = {
