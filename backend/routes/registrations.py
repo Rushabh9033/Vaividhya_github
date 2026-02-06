@@ -13,26 +13,8 @@ async def register_user(data: Registration):
     data.email = data.email.lower()
     data.enrollment_no = data.enrollment_no.lower()
 
-    # CAPACITY CHECK (Race Condition Prevention)
-    PERMANENTLY_CLOSED = ["free-fire-pro", "web-treasure-hunting", "ludo-king", "mystic-mover"]
-    
-    # Check if any selected event is full (>50) OR Closed
-    if data.selected_events:
-        # Check Permanent First
-        for e in data.selected_events:
-             if e in PERMANENTLY_CLOSED:
-                 raise HTTPException(status_code=400, detail=f"Registration Closed for: {e}")
-                 
-        pipeline = [
-            {"$unwind": "$selected_events"},
-            {"$match": {"selected_events": {"$in": data.selected_events}}},
-            {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
-            {"$match": {"count": {"$gte": 50}}}
-        ]
-        full_found = await registrations_collection.aggregate(pipeline).to_list(None)
-        if full_found:
-             full_ids = [f["_id"] for f in full_found]
-             raise HTTPException(status_code=400, detail=f"Slots Full for: {', '.join(full_ids)}")
+    # CAPACITY CHECK (Removed)
+
 
     # Check for existing email
     if await registrations_collection.find_one({"email": data.email}):
