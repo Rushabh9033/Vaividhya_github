@@ -15,18 +15,32 @@ async def create_admin(data: AdminLogin):
     await admins_collection.insert_one(data.dict())
     return {"message": "Admin created"}
 
+# Hardcoded Credentials as per User Request (Step 3328)
+ADMIN_CREDENTIALS = {
+    "TEAM1": "92jAzvoC",
+    "TEAM2": "Y9HwuSLm",
+    "TEAM3": "ULBU1CU8",
+    "TEAM4": "pm6srCqx",
+    "TEAM5": "N5tX5QxB",
+    "TEAM6": "egR2W5aP",
+    "TEAM7": "EM9sEonA",
+    "TEAM8": "J4ylrPI2",
+    "TEAM9": "yyNd0U5j",
+    "TEAM10": "ar7YBxY7"
+}
+
 @router.post("/admin/login")
 async def admin_login(data: AdminLogin):
-    # Find admin by username (case-insensitive ideally, but exact for now)
-    admin = await admins_collection.find_one({"username": data.username})
+    # Direct Key Check
+    username = data.username.upper() # Handle lowercase input
     
-    if not admin:
-        raise HTTPException(401, "Invalid username")
-        
-    if not pwd_context.verify(data.password, admin["password"]):
-        raise HTTPException(401, "Invalid password")
-        
-    return {"message": "Login success", "username": admin["username"]}
+    if username in ADMIN_CREDENTIALS:
+        if ADMIN_CREDENTIALS[username] == data.password:
+            return {"message": "Login success", "username": username}
+            
+    # Fallback to DB check ONLY if not found in hardcode (Optional, or just fail)
+    # User said "add in code not in database", so we trust code.
+    raise HTTPException(401, "Invalid credentials")
 
 @router.get("/admin/registrations")
 async def all_registrations():
