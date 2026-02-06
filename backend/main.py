@@ -5,7 +5,7 @@ from database import events_collection
 
 app = FastAPI(
     title="Vaividhya Event Registration API",
-    version="1.0.1"
+    version="1.0.2"
 )
 
 print("--- BACKEND STARTED: UNLIMITED VERSION ---")

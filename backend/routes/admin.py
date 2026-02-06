@@ -61,11 +61,58 @@ def admin_check():
 
 @router.get("/admin/event-stats")
 async def event_stats():
+    # 1. Get Counts from Registrations
     pipeline = [
         {"$unwind": "$selected_events"},
         {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}}
     ]
-    # to_list requires length, using 1000 to cover all possible events
-    stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
-    return stats
+    # existing_stats is list of dicts: {'_id': 'slug', 'count': N}
+    existing_stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
+    
+    # Map slug -> count
+    stats_map = {item["_id"]: item["count"] for item in existing_stats}
+    
+    # 2. Get All Event Names from Events Collection (to show 0 counts)
+    from database import events_collection
+    all_events_cursor = events_collection.find({})
+    
+    final_stats = []
+    
+    # Track which ones we found in DB
+    processed_slugs = set()
+    
+    async for event in all_events_cursor:
+        slug = event["event_id"]
+        name = event["event_name"]
+
+        # EXCLUDE TOTALS (User Request)
+        if slug.lower() in ["total paid", "total pending", "total-paid", "total-pending", "total_paid", "total_pending"]:
+            continue
+
+        count = stats_map.get(slug, 0) # Default to 0 if not registered
+        
+        final_stats.append({
+            "_id": slug,
+            "name": name, 
+            "count": count
+        })
+        processed_slugs.add(slug)
+        
+    # 3. Add any "Ghost" events that might be in registrations but NOT in events collection
+    for slug, count in stats_map.items():
+        if slug not in processed_slugs:
+            # EXCLUDE TOTALS (User Request)
+            if str(slug).lower() in ["total paid", "total pending", "total-paid", "total-pending", "total_paid", "total_pending"]:
+                continue
+
+            final_stats.append({
+                "_id": slug,
+                "name": str(slug).replace("-", " ").title() + " (Unknown Event)",
+                "count": count
+            })
+
+    # Sort by Count DESC
+    final_stats.sort(key=lambda x: x["count"], reverse=True)
+    
+    return final_stats
