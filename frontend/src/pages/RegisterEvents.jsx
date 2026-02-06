@@ -71,15 +71,25 @@ function RegisterEvents() {
         return prev.filter(id => id !== eventId);
       }
 
-      // 2. Count current selections by category (No longer used for limits, but kept for potential future use or debugging)
+      // 2. Count current selections by category
       const currentEvents = events.filter(e => prev.includes(e.event_id));
       const techCount = currentEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
       const nonTechCount = currentEvents.filter(e => !TECHNICAL_CATEGORIES.includes(e.category)).length;
       const isTech = TECHNICAL_CATEGORIES.includes(category);
 
-      // 3. Validation Rules (Restored)
-      if (prev.length >= 5 && !prev.includes(eventId)) {
-        showToast("Maximum 5 events allowed.", "warning");
+      // 3. Validation Rules
+      if (prev.length >= 5) {
+        showToast("Maximum 5 events total.", "warning");
+        return prev;
+      }
+
+      if (isTech && techCount >= 3) {
+        showToast("Maximum 3 Technical events allowed.", "warning");
+        return prev;
+      }
+
+      if (!isTech && nonTechCount >= 2) {
+        showToast("Maximum 2 Non-Technical events allowed.", "warning");
         return prev;
       }
 
@@ -87,6 +97,12 @@ function RegisterEvents() {
       return [...prev, eventId];
     });
   }
+
+  // ================= CALCULATE TOTALS =================
+  const selectedEventsList = events.filter(e => selectedIds.includes(e.event_id));
+  const rawTotal = selectedEventsList.reduce((sum, e) => sum + (e.price || 0), 0);
+  const discount = selectedIds.length >= 3 ? 30 : 0;
+  const finalTotal = Math.max(0, rawTotal - discount);
 
   // ================= SUBMIT =================
   async function handleProceed() {
@@ -103,7 +119,12 @@ function RegisterEvents() {
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ events: selectedIds })
+          body: JSON.stringify({
+            events: selectedIds,
+            // Pass calculated amount just in case backend needs it, 
+            // though backend usually recalculates.
+            // But frontend display is key here.
+          })
         }
       );
 
@@ -139,7 +160,7 @@ function RegisterEvents() {
     <>
       <Navbar />
 
-      <section className="event-selection-page">
+      <section className="event-selection-page" style={{ paddingBottom: "100px" }}>
         <div className="event-selection-container">
 
           <h1>Select Your Events</h1>
@@ -147,7 +168,7 @@ function RegisterEvents() {
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto">
             <p className="font-bold">🎉 Offers & Rules</p>
             <ul className="list-disc ml-5">
-              <li>Maximum 5 events total</li>
+              <li>Max 3 Technical & 2 Non-Technical Events</li>
               <li>Discount applied for 3+ events (-₹30)</li>
             </ul>
           </div>
@@ -186,14 +207,22 @@ function RegisterEvents() {
             </>
           )}
 
-          {/* SUBMIT */}
-          <div className="proceed-btn-wrapper">
+          {/* FIXED BOTTOM BAR */}
+          <div className="fixed-bottom-bar">
+            <div className="total-display">
+              <span className="text-lg">Selected: {selectedIds.length}</span>
+              <div className="price-stack">
+                {discount > 0 && <span className="original-price">₹{rawTotal}</span>}
+                <span className="final-price">₹{finalTotal}</span>
+                {discount > 0 && <span className="discount-badge text-xs bg-green-500 text-white px-1 rounded">-₹30</span>}
+              </div>
+            </div>
             <button
-              className="proceed-btn"
+              className="proceed-btn-small"
               disabled={selectedIds.length === 0 || status.submitting}
               onClick={handleProceed}
             >
-              {status.submitting ? "Processing..." : "Proceed →"}
+              {status.submitting ? "..." : "Proceed →"}
             </button>
           </div>
 

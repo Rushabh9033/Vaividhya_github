@@ -61,9 +61,24 @@ function Receipt() {
 
   const {
     full_name, enrollment_no, email, phone, college, department, year,
-    event_details, total_amount, payment_status, _id,
+    event_details, payment_status, _id,
     approved_by, approved_at
   } = receiptData;
+
+  // --- FRONTEND TOTAL CALCULATION ---
+  // Calculate total because backend might return 0 after rollback
+  const calculatedTotal = (event_details || []).reduce((sum, event) => {
+    // Find price from local eventsData
+    const localEvent = eventsData.find(e =>
+      e.slug === event.event_id || e.id === event.event_id || e.name === event.event_name
+    );
+    const price = localEvent ? localEvent.fee : (event.price || 0);
+    return sum + price;
+  }, 0);
+
+  const eventCount = (event_details || []).length;
+  const discount = eventCount >= 3 ? 30 : 0;
+  const finalAmount = Math.max(0, calculatedTotal - discount);
 
   return (
     <>
@@ -210,7 +225,7 @@ function Receipt() {
             <div className="row mt-4 break-avoid">
               <div className="col-12 text-center">
                 <p className="text-muted text-uppercase fw-bold small mb-0">Total Amount Payable</p>
-                <h1 className="text-primary fw-bold display-6 print-text-primary">₹{total_amount}</h1>
+                <h1 className="text-primary fw-bold display-6 print-text-primary">₹{finalAmount}</h1>
               </div>
             </div>
 
