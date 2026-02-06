@@ -13,6 +13,20 @@ async def register_user(data: Registration):
     data.email = data.email.lower()
     data.enrollment_no = data.enrollment_no.lower()
 
+    # CAPACITY CHECK (Race Condition Prevention)
+    # Check if any selected event is full (>50)
+    if data.selected_events:
+        pipeline = [
+            {"$unwind": "$selected_events"},
+            {"$match": {"selected_events": {"$in": data.selected_events}}},
+            {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
+            {"$match": {"count": {"$gte": 50}}}
+        ]
+        full_found = await registrations_collection.aggregate(pipeline).to_list(None)
+        if full_found:
+             full_ids = [f["_id"] for f in full_found]
+             raise HTTPException(status_code=400, detail=f"Slots Full for: {', '.join(full_ids)}")
+
     # Check for existing email
     if await registrations_collection.find_one({"email": data.email}):
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -66,6 +80,19 @@ async def get_registration(id: str):
 
 @router.put("/{id}/events")
 async def update_events(id: str, events: list[str] = Body(..., embed=True)):
+    # Check Capacity before Updating
+    if events:
+        pipeline = [
+            {"$unwind": "$selected_events"},
+            {"$match": {"selected_events": {"$in": events}}},
+            {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
+            {"$match": {"count": {"$gte": 50}}}
+        ]
+        full_found = await registrations_collection.aggregate(pipeline).to_list(None)
+        if full_found:
+             full_ids = [f["_id"] for f in full_found]
+             raise HTTPException(status_code=400, detail=f"Slots Full for: {', '.join(full_ids)}")
+
     # 1. Calculate New Total Amount
     from database import events_collection
     

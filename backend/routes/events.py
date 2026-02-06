@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from database import events_collection
+from database import events_collection, registrations_collection
 from models.event import Event
 
 router = APIRouter()
@@ -13,3 +13,21 @@ async def list_events():
 async def create_event(event: Event):
     await events_collection.insert_one(event.dict())
     return {"message": "Event created"}
+
+@router.get("/availability")
+async def get_event_availability():
+    # Dynamic Limit: 50
+    pipeline = [
+        {"$unwind": "$selected_events"},
+        {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
+        {"$match": {"count": {"$gte": 50}}}, # Filter only full events
+        {"$project": {"event_id": "$_id", "_id": 0}}
+    ]
+
+    # registrations_collection is now global
+    
+    full_events = []
+    async for doc in registrations_collection.aggregate(pipeline):
+        full_events.append(doc["event_id"])
+        
+    return {"full_events": full_events}
