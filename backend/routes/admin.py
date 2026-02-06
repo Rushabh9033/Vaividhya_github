@@ -67,52 +67,59 @@ async def event_stats():
         {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}}
     ]
-    # existing_stats is list of dicts: {'_id': 'slug', 'count': N}
     existing_stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
-    
-    # Map slug -> count
     stats_map = {item["_id"]: item["count"] for item in existing_stats}
     
-    # 2. Get All Event Names from Events Collection (to show 0 counts)
-    from database import events_collection
+    # 2. Get All Event Names from Events Collection
+    from database import events_collection, db
+    stats_collection = db.events_stats # PHYSICAL COLLECTION
+    
     all_events_cursor = events_collection.find({})
-    
     final_stats = []
-    
-    # Track which ones we found in DB
     processed_slugs = set()
     
     async for event in all_events_cursor:
         slug = event["event_id"]
         name = event["event_name"]
 
-        # EXCLUDE TOTALS (User Request)
-        if slug.lower() in ["total paid", "total pending", "total-paid", "total-pending", "total_paid", "total_pending"]:
+        if slug.lower() in ["total paid", "total pending"]:
             continue
 
-        count = stats_map.get(slug, 0) # Default to 0 if not registered
+        count = stats_map.get(slug, 0)
         
-        final_stats.append({
-            "_id": slug,
-            "name": name, 
+        stat_item = {
+            "event_id": slug,
+            "event_name": name, 
             "count": count
-        })
+        }
+        final_stats.append(stat_item)
         processed_slugs.add(slug)
         
-    # 3. Add any "Ghost" events that might be in registrations but NOT in events collection
+        # ✅ PHYSICAL SYNC: Update or Insert into events_stats collection
+        await stats_collection.update_one(
+            {"event_id": slug},
+            {"$set": stat_item},
+            upsert=True
+        )
+        
+    # 3. Handle ghost events
     for slug, count in stats_map.items():
         if slug not in processed_slugs:
-            # EXCLUDE TOTALS (User Request)
-            if str(slug).lower() in ["total paid", "total pending", "total-paid", "total-pending", "total_paid", "total_pending"]:
+            if str(slug).lower() in ["total paid", "total pending"]:
                 continue
 
-            final_stats.append({
-                "_id": slug,
-                "name": str(slug).replace("-", " ").title() + " (Unknown Event)",
+            stat_item = {
+                "event_id": slug,
+                "event_name": str(slug).replace("-", " ").title() + " (Unknown)",
                 "count": count
-            })
+            }
+            final_stats.append(stat_item)
+            # ✅ PHYSICAL SYNC
+            await stats_collection.update_one(
+                {"event_id": slug},
+                {"$set": stat_item},
+                upsert=True
+            )
 
-    # Sort by Count DESC
     final_stats.sort(key=lambda x: x["count"], reverse=True)
-    
     return final_stats
