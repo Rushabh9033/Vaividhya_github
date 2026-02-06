@@ -5,8 +5,10 @@ from database import events_collection
 
 app = FastAPI(
     title="Vaividhya Event Registration API",
-    version="1.0.0"
+    version="1.0.1"
 )
+
+print("--- BACKEND STARTED: UNLIMITED VERSION ---")
 
 # ------------------ CORS (React frontend) ------------------
 app.add_middleware(
