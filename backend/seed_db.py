@@ -9,7 +9,7 @@ MONGO_URL = "mongodb+srv://vaividhya2k26:vaividhya1234@cluster0.j2coack.mongodb.
 client = AsyncIOMotorClient(MONGO_URL)
 db = client.vaividhya_db
 events_collection = db.events
-stats_collection = db.events_stats
+stats_collection = db.event_stats
 
 # Data derived from eventsData.js (40 Total Events)
 events_data = [

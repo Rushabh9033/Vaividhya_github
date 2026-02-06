@@ -5,16 +5,18 @@ from database import events_collection
 
 app = FastAPI(
     title="Vaividhya Event Registration API",
-    version="1.0.2"
+    version="1.0.3"
 )
 
 print("--- BACKEND STARTED: UNLIMITED VERSION ---")
 
 # ------------------ CORS (React frontend) ------------------
+# CRITICAL FIX: When allow_credentials=True, origins cannot be "*"
+# Set allow_credentials=False to prevent "Network Error" on browser preflight
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
-    allow_credentials=True,
+    allow_credentials=False, # CHANGED: Registration doesn't need auth cookies
     allow_methods=["*"],
     allow_headers=["*"],
 )

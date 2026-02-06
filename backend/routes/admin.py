@@ -72,7 +72,7 @@ async def event_stats():
     
     # 2. Get All Event Names from Events Collection
     from database import events_collection, db
-    stats_collection = db.events_stats # PHYSICAL COLLECTION
+    stats_collection = db.event_stats # PHYSICAL COLLECTION (User Preferred Name)
     
     all_events_cursor = events_collection.find({})
     final_stats = []
@@ -95,7 +95,7 @@ async def event_stats():
         final_stats.append(stat_item)
         processed_slugs.add(slug)
         
-        # ✅ PHYSICAL SYNC: Update or Insert into events_stats collection
+        # ✅ PHYSICAL SYNC: Update or Insert into event_stats collection
         await stats_collection.update_one(
             {"event_id": slug},
             {"$set": stat_item},

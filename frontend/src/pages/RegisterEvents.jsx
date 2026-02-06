@@ -49,7 +49,6 @@ function RegisterEvents() {
     submitting: false
   });
 
-  // ================= LOAD EVENTS FROM LOCAL DATA =================
   useEffect(() => {
     if (!userId) {
       navigate("/register");
@@ -68,16 +67,14 @@ function RegisterEvents() {
     setStatus({ loading: false, error: null, submitting: false });
   }, [userId, navigate]);
 
-  // ================= CATEGORY COUNTS =================
+  // Calculations for limits
   const selectedEvents = events.filter(e => selectedIds.includes(e.event_id));
   const techCount = selectedEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
   const nonTechCount = selectedIds.length - techCount;
 
-  // ================= FILTER EVENTS FOR UI =================
-  const technicalList = events.filter(e => TECHNICAL_CATEGORIES.includes(e.category));
-  const nonTechnicalList = events.filter(e => !TECHNICAL_CATEGORIES.includes(e.category));
+  const technicalEvents = events.filter(e => TECHNICAL_CATEGORIES.includes(e.category));
+  const nonTechnicalEvents = events.filter(e => !TECHNICAL_CATEGORIES.includes(e.category));
 
-  // ================= TOGGLE SELECTION =================
   function toggleEvent(eventId, eventCategory) {
     const isSelected = selectedIds.includes(eventId);
     const isTech = TECHNICAL_CATEGORIES.includes(eventCategory);
@@ -87,12 +84,13 @@ function RegisterEvents() {
       return;
     }
 
-    // Validation
+    // Global Limit
     if (selectedIds.length >= 5) {
       showToast("Maximum 5 events total allowed.", "warning");
       return;
     }
 
+    // Category Specific Limits
     if (isTech && techCount >= 3) {
       showToast("Maximum 3 Technical events allowed.", "warning");
       return;
@@ -106,7 +104,6 @@ function RegisterEvents() {
     setSelectedIds(prev => [...prev, eventId]);
   }
 
-  // ================= SUBMIT =================
   async function handleProceed() {
     if (selectedIds.length === 0) {
       showToast("Please select at least one event.", "warning");
@@ -116,14 +113,11 @@ function RegisterEvents() {
     setStatus(prev => ({ ...prev, submitting: true }));
 
     try {
-      const response = await fetch(
-        `${API.REGISTRATIONS}/${userId}/events`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ events: selectedIds })
-        }
-      );
+      const response = await fetch(`${API.REGISTRATIONS}/${userId}/events`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ events: selectedIds })
+      });
 
       if (response.ok) {
         navigate("/register/receipt");
@@ -139,7 +133,6 @@ function RegisterEvents() {
   }
 
   if (status.loading) return <div className="text-center p-20 text-xl font-bold">Loading Events...</div>;
-  if (status.error) return <div className="text-center p-20 text-red-600">{status.error}</div>;
 
   return (
     <>
@@ -147,42 +140,43 @@ function RegisterEvents() {
       <section className="event-selection-page">
         <div className="event-selection-container">
           <h1>Select Your Events</h1>
-
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto">
             <p className="font-bold">🎉 Offers & Rules</p>
-            <ul className="list-disc ml-5">
+            <ul className="list-disc ml-5 text-start">
               <li>Maximum 5 events total</li>
-              <li>Max 3 Technical + 2 Non-Technical</li>
+              <li>Limit: **3 Technical + 2 Non-Technical**</li>
               <li>Discount applied for 3+ events (-₹30)</li>
             </ul>
           </div>
 
-          <EventSection
-            title="Technical Events"
-            events={technicalList}
-            selectedIds={selectedIds}
-            restrictedIds={RESTRICTED_EVENTS}
-            onToggle={toggleEvent}
-            isLimitReached={techCount >= 3}
-            isMaxReached={selectedIds.length >= 5}
-          />
+          <h2 className="event-category-title text-center">Technical Events ({techCount}/3)</h2>
+          <div className="event-select-grid">
+            {technicalEvents.map(event => (
+              <EventCard
+                key={event.event_id}
+                event={event}
+                selectedIds={selectedIds}
+                onToggle={toggleEvent}
+                isDisabled={!selectedIds.includes(event.event_id) && (selectedIds.length >= 5 || techCount >= 3 || RESTRICTED_EVENTS.includes(event.event_id))}
+              />
+            ))}
+          </div>
 
-          <EventSection
-            title="Non-Technical Events"
-            events={nonTechnicalList}
-            selectedIds={selectedIds}
-            restrictedIds={RESTRICTED_EVENTS}
-            onToggle={toggleEvent}
-            isLimitReached={nonTechCount >= 2}
-            isMaxReached={selectedIds.length >= 5}
-          />
+          <h2 className="event-category-title text-center mt-5">Non-Technical Events ({nonTechCount}/2)</h2>
+          <div className="event-select-grid">
+            {nonTechnicalEvents.map(event => (
+              <EventCard
+                key={event.event_id}
+                event={event}
+                selectedIds={selectedIds}
+                onToggle={toggleEvent}
+                isDisabled={!selectedIds.includes(event.event_id) && (selectedIds.length >= 5 || nonTechCount >= 2 || RESTRICTED_EVENTS.includes(event.event_id))}
+              />
+            ))}
+          </div>
 
           <div className="proceed-btn-wrapper">
-            <button
-              className="proceed-btn"
-              disabled={selectedIds.length === 0 || status.submitting}
-              onClick={handleProceed}
-            >
+            <button className="proceed-btn" disabled={selectedIds.length === 0 || status.submitting} onClick={handleProceed}>
               {status.submitting ? "Processing..." : "Proceed →"}
             </button>
           </div>
@@ -193,34 +187,22 @@ function RegisterEvents() {
   );
 }
 
-function EventSection({ title, events, selectedIds, restrictedIds, onToggle, isLimitReached, isMaxReached }) {
-  if (events.length === 0) return null;
-  return (
-    <>
-      <h2 className="event-category-title">{title}</h2>
-      <div className="event-select-grid">
-        {events.map(event => {
-          const isSelected = selectedIds.includes(event.event_id);
-          const isRestricted = restrictedIds.includes(event.event_id);
-          const isDisabled = (!isSelected && (isMaxReached || isLimitReached || isRestricted));
+function EventCard({ event, selectedIds, onToggle, isDisabled }) {
+  const isSelected = selectedIds.includes(event.event_id);
 
-          return (
-            <label key={event.event_id} className={`event-select-card ${isSelected ? "selected" : ""} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}>
-              <input
-                type="checkbox"
-                checked={isSelected}
-                disabled={isDisabled}
-                onChange={() => onToggle(event.event_id, event.category)}
-              />
-              <img src={event.image} alt={event.event_name} onError={(e) => { e.target.src = "/placeholder.png"; }} />
-              <h3>{event.event_name}</h3>
-              <p className="event-category">{event.category}</p>
-              <p className="event-fee">{event.price === 0 ? "Free" : `₹${event.price}`}</p>
-            </label>
-          );
-        })}
-      </div>
-    </>
+  return (
+    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}>
+      <input
+        type="checkbox"
+        checked={isSelected}
+        disabled={isDisabled}
+        onChange={() => onToggle(event.event_id, event.category)}
+      />
+      <img src={event.image} alt={event.event_name} onError={(e) => (e.target.src = "/placeholder.png")} />
+      <h3>{event.event_name}</h3>
+      <p className="event-category">{event.category}</p>
+      <p className="event-fee">{event.price == 0 ? "Free" : `₹${event.price}`}</p>
+    </label>
   );
 }
 

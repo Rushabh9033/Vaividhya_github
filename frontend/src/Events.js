@@ -3,6 +3,7 @@ import ADARENA from "./assets/ADARENA.jpeg";
 import CASECATALYST from "./assets/CASECATALYST.png";
 import FOLDANDBUILD from "./assets/FOLDANDBUILD.png";
 import LOGOHUNT from "./assets/LOGOHUNT.jpeg";
+import POSTER from "./assets/poster.jpg";
 
 // AI / Quiz / Puzzle
 import AIHUNTING from "./assets/AIHUNTING.jpeg";
@@ -93,5 +94,5 @@ export const EVENT_IMAGES = {
   "web-treasure-hunting": WEBTREASUREHUNTING, // NEW
   "word-wizard-english": WORDWIZARDENGLISH, // NEW
   "squid-game": SQUIDGAME,
-  "DEFAULT": require("./assets/poster.jpg") // Fallback image
+  "DEFAULT": POSTER
 };
