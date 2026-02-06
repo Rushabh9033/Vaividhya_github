@@ -6,6 +6,37 @@ import eventsData from "../data/eventsData";
 import { API } from "../config/api";
 import showToast from "../components/Toast";
 
+// ✅ Define technical categories (backend-compatible)
+const TECHNICAL_CATEGORIES = [
+  "Technical",
+  "Robotics",
+  "Coding",
+  "Artificial Intelligence",
+  "Cybersecurity",
+  "Physics",
+  "Engineering"
+];
+
+// 🚫 Restricted Events (Greyed Out)
+const RESTRICTED_EVENTS = [
+  "free-fire-pro",
+  "mystic-mover",
+  "web-treasure-hunting",
+  "ludo-king",
+  "real-life-among-us",
+  "ai-shape-cipher",
+  "bgmi",
+  "logo-hunt",
+  "word-wizard-english",
+  "squid-game",
+  "robo-mind-matrix",
+  "break-the-bot",
+  "treasure-hunt",
+  "escape-room",
+  "reverse-coding",
+  "ai-quiz"
+];
+
 function RegisterEvents() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("currentUserId");
@@ -18,104 +49,61 @@ function RegisterEvents() {
     submitting: false
   });
 
-  // ✅ Define technical categories (backend-compatible)
-  const TECHNICAL_CATEGORIES = [
-    "Technical", // Added to catch generic technical events
-    "Robotics",
-    "Coding",
-    "Artificial Intelligence",
-    "Cybersecurity",
-    "Physics",
-    "Engineering"
-  ];
-
-  // 🚫 Restricted Events (Greyed Out)
-  const RESTRICTED_EVENTS = [
-    "free-fire-pro",
-    "mystic-mover",
-    "web-treasure-hunting",
-    "ludo-king",
-    "real-life-among-us", // Mapped from "among-us"
-    "ai-shape-cipher",
-    "bgmi",
-    "logo-hunt",
-    "word-wizard-english",
-    "squid-game",
-    "robo-mind-matrix",
-    "break-the-bot",
-    "treasure-hunt",
-    "escape-room",
-    "reverse-coding",
-    "ai-quiz"
-  ];
-
   // ================= LOAD EVENTS FROM LOCAL DATA =================
-  // Users requested to use the same logic as Events page (which uses local data)
-  // This guarantees images load and we send the correct SLUG to backend.
   useEffect(() => {
     if (!userId) {
       navigate("/register");
       return;
     }
 
-    // Map local eventsData to the structure expected by this component
     const mappedEvents = eventsData.map(e => ({
-      event_id: e.slug,       // USE SLUG AS ID (Matches backend seed)
+      event_id: e.slug,
       event_name: e.name,
       category: e.category,
       price: e.fee,
-      image: e.poster         // Direct image usage (Guaranteed to work)
+      image: e.poster
     }));
 
     setEvents(mappedEvents);
     setStatus({ loading: false, error: null, submitting: false });
-
   }, [userId, navigate]);
 
+  // ================= CATEGORY COUNTS =================
+  const selectedEvents = events.filter(e => selectedIds.includes(e.event_id));
+  const techCount = selectedEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
+  const nonTechCount = selectedIds.length - techCount;
 
-
-  // ================= FILTER EVENTS =================
-  const technicalEvents = events.filter(
-    e => TECHNICAL_CATEGORIES.includes(e.category)
-  );
-
-  const nonTechnicalEvents = events.filter(
-    e => !TECHNICAL_CATEGORIES.includes(e.category)
-  );
+  // ================= FILTER EVENTS FOR UI =================
+  const technicalList = events.filter(e => TECHNICAL_CATEGORIES.includes(e.category));
+  const nonTechnicalList = events.filter(e => !TECHNICAL_CATEGORIES.includes(e.category));
 
   // ================= TOGGLE SELECTION =================
-  function toggleEvent(eventId, category) {
-    setSelectedIds(prev => {
-      // 1. Uncheck: Always allow
-      if (prev.includes(eventId)) {
-        return prev.filter(id => id !== eventId);
-      }
+  function toggleEvent(eventId, eventCategory) {
+    const isSelected = selectedIds.includes(eventId);
+    const isTech = TECHNICAL_CATEGORIES.includes(eventCategory);
 
-      // 2. Count current selections by category (No longer used for limits, but kept for potential future use or debugging)
-      const currentEvents = events.filter(e => prev.includes(e.event_id));
-      const techCount = currentEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
-      const nonTechCount = currentEvents.filter(e => !TECHNICAL_CATEGORIES.includes(e.category)).length;
-      const isTech = TECHNICAL_CATEGORIES.includes(category);
+    if (isSelected) {
+      setSelectedIds(prev => prev.filter(id => id !== eventId));
+      return;
+    }
 
-      // 3. Validation Rules (Restored)
-      if (prev.length >= 5) {
-        showToast("Maximum 5 events allowed.", "warning");
-        return prev;
-      }
+    // Validation
+    if (selectedIds.length >= 5) {
+      showToast("Maximum 5 events total allowed.", "warning");
+      return;
+    }
 
-      if (isTech && techCount >= 3) {
-        showToast("Maximum 3 Technical events allowed.", "warning");
-        return prev;
-      }
+    if (isTech && techCount >= 3) {
+      showToast("Maximum 3 Technical events allowed.", "warning");
+      return;
+    }
 
-      if (!isTech && nonTechCount >= 2) {
-        showToast("Maximum 2 Non-Technical events allowed.", "warning");
-        return prev;
-      }
+    if (!isTech && nonTechCount >= 2) {
+      showToast("Maximum 2 Non-Technical events allowed.", "warning");
+      return;
+    }
 
-      // 4. Proceed
-      return [...prev, eventId];
-    });
+    setSelectedIds(prev => [...prev, eventId]);
   }
 
   // ================= SUBMIT =================
@@ -150,75 +138,45 @@ function RegisterEvents() {
     }
   }
 
-  // ================= UI STATES =================
-  if (status.loading)
-    return (
-      <div className="text-center p-20 text-xl font-bold">
-        Loading Events...
-      </div>
-    );
-
-  if (status.error)
-    return (
-      <div className="text-center p-20 text-red-600">
-        {status.error}
-      </div>
-    );
+  if (status.loading) return <div className="text-center p-20 text-xl font-bold">Loading Events...</div>;
+  if (status.error) return <div className="text-center p-20 text-red-600">{status.error}</div>;
 
   return (
     <>
       <Navbar />
-
       <section className="event-selection-page">
         <div className="event-selection-container">
-
           <h1>Select Your Events</h1>
 
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto">
             <p className="font-bold">🎉 Offers & Rules</p>
             <ul className="list-disc ml-5">
               <li>Maximum 5 events total</li>
+              <li>Max 3 Technical + 2 Non-Technical</li>
               <li>Discount applied for 3+ events (-₹30)</li>
             </ul>
           </div>
 
-          {/* TECHNICAL */}
-          {technicalEvents.length > 0 && (
-            <>
-              <h2 className="event-category-title">Technical Events</h2>
-              <div className="event-select-grid">
-                {technicalEvents.map(event => (
-                  <EventCard
-                    key={event.event_id}
-                    event={event}
-                    selectedIds={selectedIds}
-                    restrictedIds={RESTRICTED_EVENTS}
-                    onToggle={toggleEvent}
-                  />
-                ))}
-              </div>
-            </>
-          )}
+          <EventSection
+            title="Technical Events"
+            events={technicalList}
+            selectedIds={selectedIds}
+            restrictedIds={RESTRICTED_EVENTS}
+            onToggle={toggleEvent}
+            isLimitReached={techCount >= 3}
+            isMaxReached={selectedIds.length >= 5}
+          />
 
-          {/* NON TECHNICAL */}
-          {nonTechnicalEvents.length > 0 && (
-            <>
-              <h2 className="event-category-title">Non-Technical Events</h2>
-              <div className="event-select-grid">
-                {nonTechnicalEvents.map(event => (
-                  <EventCard
-                    key={event.event_id}
-                    event={event}
-                    selectedIds={selectedIds}
-                    restrictedIds={RESTRICTED_EVENTS}
-                    onToggle={toggleEvent}
-                  />
-                ))}
-              </div>
-            </>
-          )}
+          <EventSection
+            title="Non-Technical Events"
+            events={nonTechnicalList}
+            selectedIds={selectedIds}
+            restrictedIds={RESTRICTED_EVENTS}
+            onToggle={toggleEvent}
+            isLimitReached={nonTechCount >= 2}
+            isMaxReached={selectedIds.length >= 5}
+          />
 
-          {/* SUBMIT */}
           <div className="proceed-btn-wrapper">
             <button
               className="proceed-btn"
@@ -228,46 +186,41 @@ function RegisterEvents() {
               {status.submitting ? "Processing..." : "Proceed →"}
             </button>
           </div>
-
         </div>
       </section>
-
       <Footer />
     </>
   );
 }
 
-// ================= EVENT CARD =================
-function EventCard({ event, selectedIds, restrictedIds = [], onToggle }) {
-  const isSelected = selectedIds.includes(event.event_id);
-  const isRestricted = restrictedIds.includes(event.event_id);
-
-  // Fix: Check against MAX TOTAL (5), logic handles category splits
-  const isMaxReached = selectedIds.length >= 5 && !isSelected;
-  const isDisabled = isMaxReached || (isRestricted && !isSelected); // Allow unselecting if already selected, but block new selection
-
+function EventSection({ title, events, selectedIds, restrictedIds, onToggle, isLimitReached, isMaxReached }) {
+  if (events.length === 0) return null;
   return (
-    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}>
-      <input
-        type="checkbox"
-        checked={isSelected}
-        disabled={isDisabled}
-        onChange={() => onToggle(event.event_id, event.category)}
-      />
-      <img
-        src={event.image}
-        alt={event.event_name}
-        onError={(e) => {
-          if (e.target.src.includes("placeholder.png")) return; // Prevent loop
-          e.target.src = "/placeholder.png";
-        }}
-      />
-      <h3>{event.event_name}</h3>
-      <p className="event-category">{event.category}</p>
-      <p className="event-fee">
-        {event.price == 0 ? "Free" : `₹${event.price}`}
-      </p>
-    </label>
+    <>
+      <h2 className="event-category-title">{title}</h2>
+      <div className="event-select-grid">
+        {events.map(event => {
+          const isSelected = selectedIds.includes(event.event_id);
+          const isRestricted = restrictedIds.includes(event.event_id);
+          const isDisabled = (!isSelected && (isMaxReached || isLimitReached || isRestricted));
+
+          return (
+            <label key={event.event_id} className={`event-select-card ${isSelected ? "selected" : ""} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}>
+              <input
+                type="checkbox"
+                checked={isSelected}
+                disabled={isDisabled}
+                onChange={() => onToggle(event.event_id, event.category)}
+              />
+              <img src={event.image} alt={event.event_name} onError={(e) => { e.target.src = "/placeholder.png"; }} />
+              <h3>{event.event_name}</h3>
+              <p className="event-category">{event.category}</p>
+              <p className="event-fee">{event.price === 0 ? "Free" : `₹${event.price}`}</p>
+            </label>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,0 @@
-{
-    "name": "vaividhya-2k26-root",
-    "private": true,
-    "scripts": {
-        "install-frontend": "cd frontend && npm install",
-        "build": "cd frontend && npm install && npm run build"
-    }
-}

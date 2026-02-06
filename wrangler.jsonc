@@ -1,8 +1,0 @@
-{
-    "name": "vaividhya-2k26",
-    "compatibility_date": "2023-12-01",
-    "pages_build_output_dir": "frontend/build",
-    "assets": {
-        "directory": "./frontend/build"
-    }
-}
