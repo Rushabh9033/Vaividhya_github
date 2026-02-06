@@ -7,7 +7,7 @@ import showToast from "../components/Toast";
 function Admin() {
   // --- AUTH STATE ---
   const [isAdmin, setIsAdmin] = useState(() => {
-    return sessionStorage.getItem("is_adminnn") === "true";
+    return localStorage.getItem("is_adminnn") === "true";
   });
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -26,7 +26,7 @@ function Admin() {
     e.preventDefault();
     setAuthError("");
     if (!usernameInput || !passwordInput) {
-      setAuthError("Selection and Password required");
+      setAuthError("Select Team & Enter Access Key");
       return;
     }
 
@@ -38,11 +38,11 @@ function Admin() {
       });
       const data = await response.json();
       if (response.ok) {
-        sessionStorage.setItem("is_adminnn", "true");
-        sessionStorage.setItem("admin_username", data.username);
+        localStorage.setItem("is_adminnn", "true");
+        localStorage.setItem("admin_username", data.username);
         setIsAdmin(true);
       } else {
-        setAuthError(data.detail || "Invalid Credentials");
+        setAuthError("Invalid ID / Access Key");
       }
     } catch (err) {
       setAuthError("Connection Failed");
@@ -101,7 +101,7 @@ function Admin() {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          admin_name: sessionStorage.getItem("admin_username") || "Admin"
+          admin_name: localStorage.getItem("admin_username") || "Admin"
         })
       });
 
@@ -158,7 +158,7 @@ function Admin() {
             ✅ Verify User
           </button>
           <div className="mt-auto p-4">
-            <button className="admin-logout-btn" onClick={() => { sessionStorage.removeItem("is_adminnn"); setIsAdmin(false); }}>
+            <button className="admin-logout-btn" onClick={() => { localStorage.removeItem("is_adminnn"); localStorage.removeItem("admin_username"); setIsAdmin(false); }}>
               Logout
             </button>
           </div>
