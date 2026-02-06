@@ -3,8 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import eventsData from "../data/eventsData";
-import { API } from "../config/api";
-import FALLBACK_IMAGE from "../assets/poster.jpg";
+import { API } from "../config/api"; // Ensure API import
 
 function Events() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,11 +59,7 @@ function Events() {
                   className="event-card-link"
                 >
                   <div className="event-card">
-                    <img
-                      src={event.poster || FALLBACK_IMAGE}
-                      alt={event.name}
-                      onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
-                    />
+                    <img src={event.poster} alt={event.name} />
 
                     <div className="event-info">
                       <h3>{event.name}</h3>

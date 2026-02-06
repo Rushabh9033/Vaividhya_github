@@ -7,11 +7,10 @@ from dotenv import load_dotenv
 MONGO_URL = "mongodb+srv://vaividhya2k26:vaividhya1234@cluster0.j2coack.mongodb.net/"
 
 client = AsyncIOMotorClient(MONGO_URL)
-db = client.vaividhya_db
+db = client.vaividhya_db  # FIXED: was vividhya_db
 events_collection = db.events
-stats_collection = db.event_stats
 
-# Data derived from eventsData.js (40 Total Events)
+# Data derived from eventsData.js
 events_data = [
   {"slug": "ai-shape-cipher", "name": "AI Shape Cipher", "category": "Technical", "fee": 50},
   {"slug": "ai-quiz", "name": "AI Quiz", "category": "Technical", "fee": 50},
@@ -26,62 +25,52 @@ events_data = [
   {"slug": "the-chemical-detective", "name": "The Chemical Detective", "category": "Technical", "fee": 50},
   {"slug": "treasure-hunt", "name": "Treasure Hunt", "category": "Non-Technical", "fee": 50},
   {"slug": "word-wizard-english", "name": "Word Wizard English", "category": "Non-Technical", "fee": 50},
-  {"slug": "adrena", "name": "Ad Arena", "category": "Technical", "fee": 50},
-  {"slug": "ai-hunting", "name": "AI Hunting", "category": "Technical", "fee": 50},
-  {"slug": "ai-prompt-battle", "name": "AI Prompt Battle", "category": "Technical", "fee": 50},
-  {"slug": "biz-brain-challenge", "name": "Biz Brain Challenge", "category": "Technical", "fee": 50},
-  {"slug": "blind-code", "name": "Blind Code", "category": "Technical", "fee": 50},
-  {"slug": "break-the-bot", "name": "Break The Bot", "category": "Technical", "fee": 50},
-  {"slug": "bridge-battle", "name": "Bridge Battle", "category": "Technical", "fee": 100},
-  {"slug": "drone-dash", "name": "Drone Dash", "category": "Technical", "fee": 100},
-  {"slug": "escape-room", "name": "Escape Room", "category": "Technical", "fee": 50},
-  {"slug": "logo-hunt", "name": "Logo Hunt", "category": "Technical", "fee": 50},
-  {"slug": "puzzle-hunt", "name": "Puzzle Hunt", "category": "Technical", "fee": 50},
-  {"slug": "real-life-among-us", "name": "Real Life Among Us", "category": "Technical", "fee": 50},
-  {"slug": "reverse-coding", "name": "Reverse Coding", "category": "Technical", "fee": 50},
-  {"slug": "robo-football-clash", "name": "Robo Football Clash", "category": "Technical", "fee": 100},
-  {"slug": "robo-war-pro", "name": "Robo War Pro", "category": "Technical", "fee": 100},
-  {"slug": "squid-game", "name": "Squid Game: In Tech World", "category": "Technical", "fee": 50},
-  {"slug": "web-treasure-hunting", "name": "Web Treasure Hunting", "category": "Technical", "fee": 0},
+  {"slug": "adrena", "name": "ADRENA", "category": "Technical", "fee": 50},
+  {"slug": "ai-hunting", "name": "AI HUNTING", "category": "Technical", "fee": 50},
+  {"slug": "ai-prompt-battle", "name": "AI PROMPT BATTLE", "category": "Technical", "fee": 50},
+  {"slug": "biz-brain-challenge", "name": "BIZ BRAIN CHALLENGE", "category": "Technical", "fee": 50},
+  {"slug": "blind-code", "name": "BLIND CODE", "category": "Technical", "fee": 50},
+  {"slug": "break-the-bot", "name": "BREAK THE BOT", "category": "Technical", "fee": 50},
+  {"slug": "bridge-battle", "name": "BRIDGE BATTLE", "category": "Technical", "fee": 100},
+  {"slug": "drone-dash", "name": "DRONE DASH", "category": "Technical", "fee": 100},
+  {"slug": "escape-room", "name": "ESCAPE ROOM", "category": "Technical", "fee": 50},
+  {"slug": "logo-hunt", "name": "LOGO HUNT", "category": "Technical", "fee": 50},
+  {"slug": "puzzle-hunt", "name": "PUZZLE HUNT", "category": "Technical", "fee": 50},
+  {"slug": "real-life-among-us", "name": "REAL LIFE AMONG US", "category": "Technical", "fee": 50},
+  {"slug": "reverse-coding", "name": "REVERSE CODING", "category": "Technical", "fee": 50},
+  {"slug": "robo-football-clash", "name": "ROBO FOOTBALL CLASH", "category": "Technical", "fee": 100},
+  {"slug": "robo-war-pro", "name": "ROBO WAR PRO", "category": "Technical", "fee": 100},
+  {"slug": "web-treasure-hunting", "name": "WEB TREASURE HUNTING", "category": "Technical", "fee": 0},
   {"slug": "bgmi", "name": "BGMI", "category": "Non-Technical", "fee": 50},
-  {"slug": "bull-vs-bear", "name": "Bull Vs Bear", "category": "Non-Technical", "fee": 50},
-  {"slug": "dream-to-deal", "name": "Dream to Deal", "category": "Non-Technical", "fee": 50},
-  {"slug": "free-fire-pro", "name": "Free Fire Pro", "category": "Non-Technical", "fee": 50},
-  {"slug": "ludo-king", "name": "Ludo King", "category": "Non-Technical", "fee": 50},
-  {"slug": "mini-musti-for-1-min", "name": "Mini Musti For 1 Min", "category": "Non-Technical", "fee": 50},
-  {"slug": "mystic-mover", "name": "Mystic Mover", "category": "Non-Technical", "fee": 50},
-  {"slug": "spin-mania", "name": "Spin Mania", "category": "Non-Technical", "fee": 50},
+  {"slug": "bull-vs-bear", "name": "BULL VS BEAR", "category": "Non-Technical", "fee": 50},
+  {"slug": "dream-to-deal", "name": "DREAM TO DEAL", "category": "Non-Technical", "fee": 50},
+  {"slug": "free-fire-pro", "name": "FREE FIRE PRO", "category": "Non-Technical", "fee": 50},
+  {"slug": "ludo-king", "name": "LUDO KING", "category": "Non-Technical", "fee": 50},
+  {"slug": "mini-musti-for-1-min", "name": "MINI MUSTI FOR 1 MIN", "category": "Non-Technical", "fee": 50},
+  {"slug": "mystic-mover", "name": "MYSTIC MOVER", "category": "Non-Technical", "fee": 50},
+  {"slug": "spin-mania", "name": "SPIN MANIA", "category": "Non-Technical", "fee": 50},
+  {"slug": "squid-game", "name": "SQUID GAME IN TECH WORLD", "category": "Non-Technical", "fee": 50},
   {"slug": "autonomous-robotics-workshop", "name": "Autonomous Robotics Workshop", "category": "Technical", "fee": 2000},
   {"slug": "robotics-challenge", "name": "Robotics Challenge", "category": "Technical", "fee": 150},
 ]
 
 async def seed():
-    print(f"Total events to seed: {len(events_data)}")
-    
-    print("Clearing collections...")
+    print("Clearing events...")
     await events_collection.delete_many({})
-    await stats_collection.delete_many({})
     
-    print("Seeding collections...")
+    print("Seeding events...")
     for e in events_data:
-        # 1. Seed Main Events Collection
-        event_doc = {
-            "event_id": e["slug"],
+        # User Model: event_id: str, event_name: str, price: int, category: str
+        doc = {
+            "event_id": e["slug"],  # USING SLUG AS ID for frontend image mapping
             "event_name": e["name"],
             "price": e["fee"],
             "category": e["category"]
         }
-        await events_collection.insert_one(event_doc)
-        
-        # 2. Seed Physical Stats Collection (0 entries)
-        stat_doc = {
-            "event_id": e["slug"],
-            "event_name": e["name"],
-            "count": 0
-        }
-        await stats_collection.insert_one(stat_doc)
+        await events_collection.insert_one(doc)
     
-    print(f"Successfully seeded {len(events_data)} events and initialized stats.")
+    print("Done!")
 
 if __name__ == "__main__":
-    asyncio.run(seed())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(seed())

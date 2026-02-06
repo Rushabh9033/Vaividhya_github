@@ -61,65 +61,11 @@ def admin_check():
 
 @router.get("/admin/event-stats")
 async def event_stats():
-    # 1. Get Counts from Registrations
     pipeline = [
         {"$unwind": "$selected_events"},
         {"$group": {"_id": "$selected_events", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}}
     ]
-    existing_stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
-    stats_map = {item["_id"]: item["count"] for item in existing_stats}
-    
-    # 2. Get All Event Names from Events Collection
-    from database import events_collection, db
-    stats_collection = db.event_stats # PHYSICAL COLLECTION (User Preferred Name)
-    
-    all_events_cursor = events_collection.find({})
-    final_stats = []
-    processed_slugs = set()
-    
-    async for event in all_events_cursor:
-        slug = event["event_id"]
-        name = event["event_name"]
-
-        if "total" in slug.lower():
-            continue
-
-        count = stats_map.get(slug, 0)
-        
-        stat_item = {
-            "event_id": slug,
-            "event_name": name, 
-            "count": count
-        }
-        final_stats.append(stat_item)
-        processed_slugs.add(slug)
-        
-        # ✅ PHYSICAL SYNC: Update or Insert into event_stats collection
-        await stats_collection.update_one(
-            {"event_id": slug},
-            {"$set": stat_item},
-            upsert=True
-        )
-        
-    # 3. Handle ghost events
-    for slug, count in stats_map.items():
-        if slug not in processed_slugs:
-            if "total" in str(slug).lower():
-                continue
-
-            stat_item = {
-                "event_id": slug,
-                "event_name": str(slug).replace("-", " ").title() + " (Unknown)",
-                "count": count
-            }
-            final_stats.append(stat_item)
-            # ✅ PHYSICAL SYNC
-            await stats_collection.update_one(
-                {"event_id": slug},
-                {"$set": stat_item},
-                upsert=True
-            )
-
-    final_stats.sort(key=lambda x: x["count"], reverse=True)
-    return final_stats
+    # to_list requires length, using 1000 to cover all possible events
+    stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
+    return stats

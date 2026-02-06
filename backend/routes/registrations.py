@@ -38,14 +38,6 @@ async def register_user(data: Registration):
     result = await registrations_collection.insert_one(doc)
     return {"id": str(result.inserted_id), "message": "Registered successfully"}
 
-@router.get("/enrollment/{enrollment_no}")
-async def get_registration_by_enrollment(enrollment_no: str):
-    reg = await registrations_collection.find_one({"enrollment_no": enrollment_no})
-    if not reg:
-        raise HTTPException(404, "Not found")
-    reg["_id"] = str(reg["_id"])
-    return reg
-
 @router.get("/{id}")
 async def get_registration(id: str):
     reg = await registrations_collection.find_one({"_id": ObjectId(id)})

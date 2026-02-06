@@ -3,16 +3,16 @@
 // This allows the app to work on localhost, local network IPs (for mobile testing), and production
 
 const getApiUrl = () => {
-    // Force Production URL for all deployed/packaged builds
-    // Only use localhost if explicitly told to via environment variable
-    if (process.env.NODE_ENV === "development") {
-        const hostname = window.location.hostname;
-        if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.startsWith("192.168.") || hostname.startsWith("10.")) {
-            return `http://${hostname}:8000`;
-        }
+    const hostname = window.location.hostname;
+
+    // Check if we are in development (localhost or local network IP)
+    // The backend is expected to be on the same host but port 8000
+    if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.startsWith("192.168.") || hostname.startsWith("10.")) {
+        return `http://${hostname}:8000`;
     }
 
-    return "https://vaividhya2k26-backend.onrender.com";
+    // Production fallback (if deployed)
+    return "https://vaividhya-github.onrender.com"; // Production Backend URL (Render)
 };
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || getApiUrl();

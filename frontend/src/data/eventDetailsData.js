@@ -873,7 +873,7 @@ const eventDetailsData = {
     poster: CHEMICALDETECTIVE,
     fee: "50",
     about: "Chemistry based treasure hunt.",
-    registration: "Fee: 50",
+    registration: "Fee: 100",
     rules: ["Safety first."],
     rounds: ["Lab Test"],
     venue: "Chemistry Lab",
