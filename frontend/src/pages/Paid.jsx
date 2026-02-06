@@ -12,9 +12,9 @@ function Paid() {
   const location = useLocation();
 
   // --- AUTH STATE ---
-  // Initialize state based on localStorage to persist login across refreshes
+  // Initialize state based on sessionStorage to persist login ONLY for current session
   const [isAdmin, setIsAdmin] = useState(() => {
-    return localStorage.getItem("is_adminnn") === "true";
+    return sessionStorage.getItem("is_adminnn") === "true";
   });
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -47,8 +47,8 @@ function Paid() {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("is_adminnn", "true");
-        localStorage.setItem("admin_username", data.username);
+        sessionStorage.setItem("is_adminnn", "true");
+        sessionStorage.setItem("admin_username", data.username);
         setIsAdmin(true);
         setAuthError("");
       } else {
@@ -102,8 +102,8 @@ function Paid() {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            admin_name: localStorage.getItem("admin_username") || "Admin",
-            admin_dept: localStorage.getItem("admin_username") || "General"
+            admin_name: sessionStorage.getItem("admin_username") || "Admin",
+            admin_dept: sessionStorage.getItem("admin_username") || "General" // (Backend ignores this now, but keeping frontend consistent)
           })
         }
       );
@@ -250,7 +250,7 @@ function Paid() {
             <button
               className="btn btn-sm btn-outline-danger"
               onClick={() => {
-                localStorage.removeItem("is_adminnn");
+                sessionStorage.removeItem("is_adminnn");
                 setIsAdmin(false);
               }}
             >
