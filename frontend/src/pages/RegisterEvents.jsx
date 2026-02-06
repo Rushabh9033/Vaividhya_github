@@ -98,8 +98,18 @@ function RegisterEvents() {
       const isTech = TECHNICAL_CATEGORIES.includes(category);
 
       // 3. Validation Rules (Restored)
-      if (prev.length >= 5 && !prev.includes(eventId)) {
+      if (prev.length >= 5) {
         showToast("Maximum 5 events allowed.", "warning");
+        return prev;
+      }
+
+      if (isTech && techCount >= 3) {
+        showToast("Maximum 3 Technical events allowed.", "warning");
+        return prev;
+      }
+
+      if (!isTech && nonTechCount >= 2) {
+        showToast("Maximum 2 Non-Technical events allowed.", "warning");
         return prev;
       }
 
