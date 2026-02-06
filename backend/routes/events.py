@@ -16,6 +16,14 @@ async def create_event(event: Event):
 
 @router.get("/availability")
 async def get_event_availability():
+    # 1. Hardcoded Permanent Closures (User Order)
+    PERMANENTLY_CLOSED = [
+        "free-fire-pro", 
+        "web-treasure-hunting", 
+        "ludo-king",
+        "mystic-mover" 
+    ]
+    
     # Dynamic Limit: 50
     pipeline = [
         {"$unwind": "$selected_events"},
@@ -26,7 +34,7 @@ async def get_event_availability():
 
     # registrations_collection is now global
     
-    full_events = []
+    full_events = list(PERMANENTLY_CLOSED) # Start with closed ones
     async for doc in registrations_collection.aggregate(pipeline):
         full_events.append(doc["event_id"])
         

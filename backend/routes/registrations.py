@@ -14,8 +14,15 @@ async def register_user(data: Registration):
     data.enrollment_no = data.enrollment_no.lower()
 
     # CAPACITY CHECK (Race Condition Prevention)
-    # Check if any selected event is full (>50)
+    PERMANENTLY_CLOSED = ["free-fire-pro", "web-treasure-hunting", "ludo-king", "mystic-mover"]
+    
+    # Check if any selected event is full (>50) OR Closed
     if data.selected_events:
+        # Check Permanent First
+        for e in data.selected_events:
+             if e in PERMANENTLY_CLOSED:
+                 raise HTTPException(status_code=400, detail=f"Registration Closed for: {e}")
+                 
         pipeline = [
             {"$unwind": "$selected_events"},
             {"$match": {"selected_events": {"$in": data.selected_events}}},
