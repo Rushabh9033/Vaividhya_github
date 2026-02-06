@@ -39,6 +39,8 @@ import LUDOKING from "../assets/LUDOKING.jpeg";
 import AUTONOMOUSROBOTICS from "../assets/autonomous-robotics-workshop-final.jpg";
 import ROBOTICSCHALLENGE from "../assets/robotics-challenge-final.jpg";
 import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
+import ESCAPEROOM from "../assets/ESCAPEROOM.png";
+import BRIDGEBATTLE from "../assets/BRIDGEBATTLE.jpeg";
 
 const eventDetailsData = {
   "web-treasure-hunting": {
@@ -871,7 +873,7 @@ const eventDetailsData = {
     poster: CHEMICALDETECTIVE,
     fee: "50",
     about: "Chemistry based treasure hunt.",
-    registration: "Fee: 100",
+    registration: "Fee: 50",
     rules: ["Safety first."],
     rounds: ["Lab Test"],
     venue: "Chemistry Lab",
@@ -964,12 +966,7 @@ const eventDetailsData = {
   "escape-room": {
     name: "Escape Room",
     tagline: "Get Out Fast",
-    poster: require("../assets/ESCAPEROOM.png"), // Keeping few requires if lazy, but better to import. Fixed above?
-    // Wait, I missed importing ESCAPEROOM above? Let me check.
-    // I missed importing ESCAPEROOM in the huge import block I wrote.
-    // I will use require for now or add import.
-    // Let's stick to import. I will add it to the file write content.
-    // Added imports: ESCAPEROOM
+    poster: ESCAPEROOM,
     fee: "50",
     about: "Solve puzzles to escape.",
     registration: "Fee: 100",
@@ -985,7 +982,7 @@ const eventDetailsData = {
   "bridge-battle": {
     name: "Bridge Battle",
     tagline: "Bridge the Gap",
-    poster: require("../assets/BRIDGEBATTLE.jpeg"),
+    poster: BRIDGEBATTLE,
     fee: "100",
     about: "Build strong bridges.",
     registration: "Fee: 100",

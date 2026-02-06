@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import eventsData from "../data/eventsData";
+import { API } from "../config/api"; // Ensure API import
 
 function Events() {
   const [searchQuery, setSearchQuery] = useState("");

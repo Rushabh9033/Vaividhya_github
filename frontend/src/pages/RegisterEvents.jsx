@@ -29,6 +29,26 @@ function RegisterEvents() {
     "Engineering"
   ];
 
+  // 🚫 Restricted Events (Greyed Out)
+  const RESTRICTED_EVENTS = [
+    "free-fire-pro",
+    "mystic-mover",
+    "web-treasure-hunting",
+    "ludo-king",
+    "real-life-among-us", // Mapped from "among-us"
+    "ai-shape-cipher",
+    "bgmi",
+    "logo-hunt",
+    "word-wizard-english",
+    "squid-game",
+    "robo-mind-matrix",
+    "break-the-bot",
+    "treasure-hunt",
+    "escape-room",
+    "reverse-coding",
+    "ai-quiz"
+  ];
+
   // ================= LOAD EVENTS FROM LOCAL DATA =================
   // Users requested to use the same logic as Events page (which uses local data)
   // This guarantees images load and we send the correct SLUG to backend.
@@ -52,6 +72,8 @@ function RegisterEvents() {
 
   }, [userId, navigate]);
 
+
+
   // ================= FILTER EVENTS =================
   const technicalEvents = events.filter(
     e => TECHNICAL_CATEGORIES.includes(e.category)
@@ -69,25 +91,15 @@ function RegisterEvents() {
         return prev.filter(id => id !== eventId);
       }
 
-      // 2. Count current selections by category
+      // 2. Count current selections by category (No longer used for limits, but kept for potential future use or debugging)
       const currentEvents = events.filter(e => prev.includes(e.event_id));
       const techCount = currentEvents.filter(e => TECHNICAL_CATEGORIES.includes(e.category)).length;
       const nonTechCount = currentEvents.filter(e => !TECHNICAL_CATEGORIES.includes(e.category)).length;
       const isTech = TECHNICAL_CATEGORIES.includes(category);
 
-      // 3. Validation Rules
-      if (prev.length >= 5) {
-        showToast("Maximum 5 events allowed in total.", "warning");
-        return prev;
-      }
-
-      if (isTech && techCount >= 3) {
-        showToast("Maximum 3 Technical events allowed.", "warning");
-        return prev;
-      }
-
-      if (!isTech && nonTechCount >= 2) {
-        showToast("Maximum 2 Non-Technical events allowed.", "warning");
+      // 3. Validation Rules (Restored)
+      if (prev.length >= 5 && !prev.includes(eventId)) {
+        showToast("Maximum 5 events allowed.", "warning");
         return prev;
       }
 
@@ -156,9 +168,7 @@ function RegisterEvents() {
             <p className="font-bold">🎉 Offers & Rules</p>
             <ul className="list-disc ml-5">
               <li>Maximum 5 events total</li>
-              <li>Max 3 Technical + Max 2 Non-Technical</li>
-              <li>₹50 & ₹100 events available</li>
-              <li className="text-red-600 font-bold">Offer: Flat ₹30 OFF on 3+ Events!</li>
+              <li>Discount applied for 3+ events (-₹30)</li>
             </ul>
           </div>
 
@@ -172,6 +182,7 @@ function RegisterEvents() {
                     key={event.event_id}
                     event={event}
                     selectedIds={selectedIds}
+                    restrictedIds={RESTRICTED_EVENTS}
                     onToggle={toggleEvent}
                   />
                 ))}
@@ -189,6 +200,7 @@ function RegisterEvents() {
                     key={event.event_id}
                     event={event}
                     selectedIds={selectedIds}
+                    restrictedIds={RESTRICTED_EVENTS}
                     onToggle={toggleEvent}
                   />
                 ))}
@@ -216,20 +228,21 @@ function RegisterEvents() {
 }
 
 // ================= EVENT CARD =================
-function EventCard({ event, selectedIds, onToggle }) {
+function EventCard({ event, selectedIds, restrictedIds = [], onToggle }) {
   const isSelected = selectedIds.includes(event.event_id);
-  const isRestricted = event.event_id === "web-treasure-hunting";
+  const isRestricted = restrictedIds.includes(event.event_id);
+
   // Fix: Check against MAX TOTAL (5), logic handles category splits
   const isMaxReached = selectedIds.length >= 5 && !isSelected;
-  const isDisabled = isMaxReached || isRestricted;
+  const isDisabled = isMaxReached || (isRestricted && !isSelected); // Allow unselecting if already selected, but block new selection
 
   return (
-    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isRestricted ? "opacity-60 cursor-not-allowed" : ""}`}>
+    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}>
       <input
         type="checkbox"
         checked={isSelected}
         disabled={isDisabled}
-        onChange={() => !isRestricted && onToggle(event.event_id, event.category)}
+        onChange={() => onToggle(event.event_id, event.category)}
       />
       <img
         src={event.image}

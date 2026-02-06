@@ -16,6 +16,7 @@ import REALIFEAMONGUS from "../assets/REALLIFEAMONGUS.jpeg";
 import REVERSECODING from "../assets/REVERSECODING.png";
 import ROBOFOOTBALLCLASH from "../assets/ROBOFOOTBALLCLASH.jpeg";
 import ROBOWARPRO from "../assets/ROBOWARPRO.png";
+import SQUIDGAME from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 import WEBTREASUREHUNTING from "../assets/WEB-TREASURE-HUNTING.png";
 import AISSHAPECIPHER from "../assets/AISSHAPECIPHER.png";
 import AIQUIZ from "../assets/AIQUIZ.jpeg";
@@ -329,6 +330,16 @@ const eventsData = [
     fee: 100,
     min_members: 4,
     max_members: 4,
+  },
+  {
+    id: 16,
+    name: "Squid Game: In Tech World",
+    slug: "squid-game",
+    category: "Technical",
+    poster: SQUIDGAME,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
   {
     id: 17,
