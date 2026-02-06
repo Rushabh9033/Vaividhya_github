@@ -4,7 +4,7 @@ from models.admin import AdminLogin
 from passlib.context import CryptContext
 from bson import ObjectId
 
-pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256", "sha256_crypt"], deprecated="auto")
 
 router = APIRouter()
 
