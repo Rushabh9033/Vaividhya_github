@@ -57,9 +57,46 @@ async def get_registration(id: str):
             events_list.append(e)
         
         reg["event_details"] = events_list
-        total = sum(e.get("price", 0) for e in events_list)
+        reg["event_details"] = events_list
+        # Ensure we use the latest price from the events collection
+        total = sum(e.get("price", e.get("fee", 0)) for e in events_list)
         if len(events_list) >= 3:
             total -= 30
+        if total < 0: total = 0
+        reg["total_amount"] = total
+    else:
+        reg["event_details"] = []
+        reg["total_amount"] = 0
+        
+    return reg
+
+@router.get("/enrollment/{enrollment_no}")
+async def get_registration_by_enrollment(enrollment_no: str):
+    # Normalize enrollment number to lower case as it is stored that way
+    enrollment_no = enrollment_no.lower()
+    
+    reg = await registrations_collection.find_one({"enrollment_no": enrollment_no})
+    if not reg:
+        raise HTTPException(404, "Registration not found for this enrollment number")
+    reg["_id"] = str(reg["_id"])
+
+    # Manual aggregation: Fetch event details for the selected IDs
+    if "selected_events" in reg and reg["selected_events"]:
+        from database import events_collection
+        event_slugs = reg["selected_events"]
+        
+        events_cursor = events_collection.find({"event_id": {"$in": event_slugs}})
+        events_list = []
+        async for e in events_cursor:
+            e["_id"] = str(e["_id"])
+            events_list.append(e)
+        
+        reg["event_details"] = events_list
+        # Ensure we use the latest price from the events collection
+        total = sum(e.get("price", e.get("fee", 0)) for e in events_list)
+        if len(events_list) >= 3:
+            total -= 30
+        if total < 0: total = 0
         reg["total_amount"] = total
     else:
         reg["event_details"] = []

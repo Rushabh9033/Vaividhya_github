@@ -1,0 +1,40 @@
+ID: ai-shape-cipher | Name: AI Shape Cipher
+ID: ai-quiz | Name: AI Quiz
+ID: brain-booster-math | Name: Brain Booster Math
+ID: case-catalyst | Name: Case Catalyst
+ID: cricket-carnival | Name: Cricket Carnival
+ID: fold-and-build | Name: Fold & Build
+ID: quantum-quest-physics | Name: Quantum Quest Physics
+ID: robo-mind-matrix | Name: Robo Mind Matrix
+ID: robo-rush | Name: Robo Rush
+ID: survivor-drop | Name: Survivor Drop
+ID: the-chemical-detective | Name: The Chemical Detective
+ID: treasure-hunt | Name: Treasure Hunt
+ID: word-wizard-english | Name: Word Wizard English
+ID: adrena | Name: ADRENA
+ID: ai-hunting | Name: AI HUNTING
+ID: ai-prompt-battle | Name: AI PROMPT BATTLE
+ID: biz-brain-challenge | Name: BIZ BRAIN CHALLENGE
+ID: blind-code | Name: BLIND CODE
+ID: break-the-bot | Name: BREAK THE BOT
+ID: bridge-battle | Name: BRIDGE BATTLE
+ID: drone-dash | Name: DRONE DASH
+ID: escape-room | Name: ESCAPE ROOM
+ID: logo-hunt | Name: LOGO HUNT
+ID: puzzle-hunt | Name: PUZZLE HUNT
+ID: real-life-among-us | Name: REAL LIFE AMONG US
+ID: reverse-coding | Name: REVERSE CODING
+ID: robo-football-clash | Name: ROBO FOOTBALL CLASH
+ID: robo-war-pro | Name: ROBO WAR PRO
+ID: web-treasure-hunting | Name: WEB TREASURE HUNTING
+ID: bgmi | Name: BGMI
+ID: bull-vs-bear | Name: BULL VS BEAR
+ID: dream-to-deal | Name: DREAM TO DEAL
+ID: free-fire-pro | Name: FREE FIRE PRO
+ID: ludo-king | Name: LUDO KING
+ID: mini-musti-for-1-min | Name: MINI MUSTI FOR 1 MIN
+ID: mystic-mover | Name: MYSTIC MOVER
+ID: spin-mania | Name: SPIN MANIA
+ID: squid-game | Name: SQUID GAME IN TECH WORLD
+ID: autonomous-robotics-workshop | Name: Autonomous Robotics Workshop
+ID: robotics-challenge | Name: Robotics Challenge

@@ -66,16 +66,16 @@ function Navbar() {
               // OPTION A: If User IS Logged In
               <>
                 <li className="nav-item mb-2">
-                  <NavLink 
-                    className="nav-link" 
+                  <NavLink
+                    className="nav-link"
                     to={`/receipt`} // Or wherever your profile page is
                   >
                     My Registration
                   </NavLink>
                 </li>
-                
+
                 <li className="nav-item">
-                  <button 
+                  <button
                     onClick={handleLogout}
                     className="btn btn-outline-light btn-sm px-3"
                   >
@@ -85,14 +85,24 @@ function Navbar() {
               </>
             ) : (
               // OPTION B: If User is NOT Logged In
-              <li className="nav-item">
-                <NavLink
-                  className="btn btn-warning text-dark fw-semibold px-4"
-                  to="/register"
-                >
-                  Register
-                </NavLink>
-              </li>
+              <>
+                <li className="nav-item me-2 mb-2 mb-lg-0">
+                  <NavLink
+                    className="btn btn-outline-warning fw-semibold px-4 w-100"
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item mb-2 mb-lg-0">
+                  <NavLink
+                    className="btn btn-warning text-dark fw-semibold px-4 w-100"
+                    to="/register"
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
             )}
             {/* --- CONDITIONAL RENDERING END --- */}
 

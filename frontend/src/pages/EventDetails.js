@@ -137,9 +137,12 @@ function EventDetails() {
           </div>
 
           {/* PRIZES */}
-          <div className="event-section">
-            <h2>Prizes</h2>
-            <p>{event.prizes}</p>
+          <div className="event-section prizes-highlight">
+            <h2>🏆 Prizes & Rewards</h2>
+            <div className="prize-card">
+              <i className="fas fa-trophy prize-icon"></i>
+              <p>{event.prizes}</p>
+            </div>
           </div>
 
           {/* COORDINATORS */}

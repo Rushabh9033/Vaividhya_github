@@ -18,9 +18,10 @@ import ROBOFOOTBALLCLASH from "../assets/ROBOFOOTBALLCLASH.jpeg";
 import ROBOWARPRO from "../assets/ROBOWARPRO.png";
 import SQUIDGAME from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 import WEBTREASUREHUNTING from "../assets/WEB-TREASURE-HUNTING.png";
+import REELRUSH from "../assets/REELRUSH.png";
 import AISSHAPECIPHER from "../assets/AISSHAPECIPHER.png";
 import AIQUIZ from "../assets/AIQUIZ.jpeg";
-import BRAINBOOSTERMATH from "../assets/BRAINBOOSTERMATH.jpeg";
+import BRAINBOOSTERMATH from "../assets/BRAINBOOSTER_NEW.jpg";
 import CASECATALYST from "../assets/CASECATALYST.png";
 import CRICKETCARNIVAL from "../assets/CRICKETCARNIVAL.jpeg";
 import FOLDANDBUILD from "../assets/FOLDANDBUILD.png";
@@ -317,7 +318,7 @@ const eventsData = [
     slug: "robo-football-clash",
     category: "Technical",
     poster: ROBOFOOTBALLCLASH,
-    fee: 100,
+    fee: 50,
     min_members: 1,
     max_members: 1,
   },
@@ -452,6 +453,16 @@ const eventsData = [
     fee: 150,
     min_members: 1,
     max_members: 4,
+  },
+  {
+    id: 41,
+    name: "Reel Rush",
+    slug: "reel-rush",
+    category: "Non-Technical",
+    poster: REELRUSH,
+    fee: 50,
+    min_members: 1,
+    max_members: 1,
   },
 ];
 

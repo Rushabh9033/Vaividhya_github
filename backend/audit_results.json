@@ -1,0 +1,44 @@
+{
+    "master_event": {
+        "_id": "698859b75c5e8eeb9a0c2e5c",
+        "event_id": "autonomous-robotics-workshop",
+        "event_name": "Autonomous Robotics Workshop",
+        "category": "Technical",
+        "price": 2000,
+        "name": "Autonomous Robotics Workshop"
+    },
+    "registrations_count": 4,
+    "registrations_list": [
+        {
+            "enrollment_no": "250761305022",
+            "full_name": "DHANANI TAKSH SATISHKUMAR ",
+            "payment_status": "PAID"
+        },
+        {
+            "enrollment_no": "e23110125000910080",
+            "full_name": "Keval Gamanbhai Patel ",
+            "payment_status": "PAID"
+        },
+        {
+            "enrollment_no": "e23110125000910086",
+            "full_name": "Kris Alpeshbhai Patel ",
+            "payment_status": "PENDING"
+        },
+        {
+            "enrollment_no": "e23110125000910056",
+            "full_name": "Manav J Panchal ",
+            "payment_status": "PENDING"
+        }
+    ],
+    "flattened_count": 1,
+    "flattened_list": [
+        {
+            "enrollment_no": "250761305022",
+            "full_name": "DHANANI TAKSH SATISHKUMAR "
+        }
+    ],
+    "similar_slugs_in_db": [
+        "autonomous-robotics-workshop",
+        "robotics-challenge"
+    ]
+}

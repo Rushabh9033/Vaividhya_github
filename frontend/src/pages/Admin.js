@@ -64,6 +64,15 @@ function Admin() {
           <div className="admin-card">
             <h2>Payment Verification</h2>
 
+            <div style={{ marginBottom: "20px" }}>
+              <button
+                onClick={() => window.location.href = '/admin/event-level'}
+                style={{ width: "100%", padding: "12px", background: "#00e5ff", color: "black", fontWeight: "bold", border: "none", borderRadius: "5px", cursor: "pointer" }}
+              >
+                Go to Event-Level View 📊
+              </button>
+            </div>
+
             <input
               placeholder="Enter Registration ID"
               value={regId}
@@ -75,11 +84,21 @@ function Admin() {
 
             {data && (
               <div className="admin-details">
-                <p><strong>Name:</strong> {data.name}</p>
-                <p><strong>Total Amount:</strong> ₹{data.totalAmount}</p>
-                <p><strong>Status:</strong> {data.paymentStatus}</p>
+                <p><strong>Name:</strong> {data.name || data.full_name}</p>
+                <div style={{ padding: "12px", background: "rgba(0, 229, 255, 0.08)", borderRadius: "10px", margin: "10px 0", border: "1px solid rgba(0, 229, 255, 0.2)" }}>
+                  {data.paymentStatus === "PAID" || data.payment_status === "PAID" ? (
+                    <p className="mb-0 text-success" style={{ fontSize: "1.1rem" }}>
+                      <strong>✅ Payment Confirmed</strong>
+                    </p>
+                  ) : (
+                    <p className="mb-0 text-warning"><strong>⚠️ Payment Pending</strong></p>
+                  )}
+                </div>
+                <p><strong>Enrollment:</strong> {data.enrollment || data.enrollment_no}</p>
+                <p><strong>Total Amount:</strong> ₹{data.totalAmount || data.total_amount}</p>
+                <p><strong>Status:</strong> {data.paymentStatus || data.payment_status}</p>
 
-                {data.paymentStatus === "UNPAID" && (
+                {(data.paymentStatus === "UNPAID" || data.payment_status === "PENDING") && (
                   <button className="paid-btn" onClick={markAsPaid}>
                     Mark as PAID
                   </button>

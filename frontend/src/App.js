@@ -9,6 +9,9 @@ import EventDetails from "./pages/EventDetails";
 import RegisterEvents from "./pages/RegisterEvents";
 import SearchReceipt from "./pages/SearchReceipt";
 import Paid from "./pages/Paid";
+import Admin from "./pages/Admin";
+import AdminEventLevel from "./pages/AdminEventLevel";
+import Login from "./pages/Login";
 
 
 
@@ -22,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/register/events" element={<EventSelection />} /> */}
           <Route path="/register/receipt" element={<Receipt />} />
           {/* <Route path="/admin" element={<Admin />} /> */}
@@ -31,6 +35,8 @@ function App() {
           <Route path="/search-receipt" element={<SearchReceipt />} />
           <Route path="/receipt" element={<Receipt />} />
           <Route path="/paid" element={<Paid />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/event-level" element={<AdminEventLevel />} />
         </Routes>
       </BrowserRouter>
     </ToastProvider>

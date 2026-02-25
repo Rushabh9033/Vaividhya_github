@@ -1,0 +1,378 @@
+DAILY PAID ENTRY REPORT (Jan 28 - Today)
+============================================================
+Date            | Event Name                               | Count
+-----------------------------------------------------------------
+2026-01-28      | Free Fire Pro                            | 43   
+                | Web Treasure Hunting                     | 27   
+                | Squid Game: In Tech World                | 19   
+                | Ludo King                                | 16   
+                | Escape Room                              | 10   
+                | BGMI                                     | 9    
+                | Brain Booster Math                       | 7    
+                | Mystic Mover                             | 5    
+                | Blind Code                               | 5    
+                | Spin Mania                               | 5    
+                | AI Prompt Battle                         | 4    
+                | Case Catalyst                            | 4    
+                | Quantum Quest Physics                    | 4    
+                | Robo Mind Matrix                         | 4    
+                | Break The Bot                            | 3    
+                | Real Life Among Us                       | 2    
+                | Fold & Build                             | 2    
+                | Treasure Hunt                            | 2    
+                | Robo Rush                                | 2    
+                | Drone Dash                               | 1    
+                | ROBO WAR PRO                             | 1    
+                | Bull Vs Bear                             | 1    
+                | Puzzle Hunt                              | 1    
+                | Survivor Drop                            | 1    
+                | Cricket Carnival                         | 1    
+                | Subtotal for 2026-01-28                  | 179  
+-----------------------------------------------------------------
+2026-01-29      | Ludo King                                | 32   
+                | Web Treasure Hunting                     | 23   
+                | Treasure Hunt                            | 18   
+                | Free Fire Pro                            | 16   
+                | Fold & Build                             | 14   
+                | Survivor Drop                            | 13   
+                | BGMI                                     | 8    
+                | Word Wizard English                      | 7    
+                | Squid Game: In Tech World                | 6    
+                | Robo Rush                                | 5    
+                | Cricket Carnival                         | 4    
+                | Escape Room                              | 4    
+                | Puzzle Hunt                              | 3    
+                | Mystic Mover                             | 2    
+                | Break The Bot                            | 2    
+                | Robo Mind Matrix                         | 2    
+                | Blind Code                               | 2    
+                | Robo Football Clash                      | 2    
+                | Bridge Battle                            | 1    
+                | AI Shape Cipher                          | 1    
+                | Dream to Deal                            | 1    
+                | Brain Booster Math                       | 1    
+                | AI Prompt Battle                         | 1    
+                | Spin Mania                               | 1    
+                | Reverse Coding                           | 1    
+                | Subtotal for 2026-01-29                  | 170  
+-----------------------------------------------------------------
+2026-01-30      | Free Fire Pro                            | 44   
+                | Mystic Mover                             | 37   
+                | Ludo King                                | 31   
+                | Web Treasure Hunting                     | 26   
+                | BGMI                                     | 21   
+                | Escape Room                              | 20   
+                | Treasure Hunt                            | 15   
+                | Survivor Drop                            | 8    
+                | Fold & Build                             | 7    
+                | Word Wizard English                      | 6    
+                | Puzzle Hunt                              | 6    
+                | Logo Hunt                                | 6    
+                | Robo Mind Matrix                         | 5    
+                | Break The Bot                            | 5    
+                | Real Life Among Us                       | 4    
+                | Spin Mania                               | 4    
+                | Robo Rush                                | 4    
+                | Mini Musti For 1 Min                     | 3    
+                | Drone Dash                               | 3    
+                | Dream to Deal                            | 3    
+                | AI Prompt Battle                         | 2    
+                | Squid Game: In Tech World                | 2    
+                | Brain Booster Math                       | 2    
+                | Bridge Battle                            | 2    
+                | Blind Code                               | 1    
+                | Case Catalyst                            | 1    
+                | Bull Vs Bear                             | 1    
+                | Reverse Coding                           | 1    
+                | ROBO WAR PRO                             | 1    
+                | Subtotal for 2026-01-30                  | 271  
+-----------------------------------------------------------------
+2026-01-31      | Free Fire Pro                            | 8    
+                | Treasure Hunt                            | 7    
+                | Squid Game: In Tech World                | 7    
+                | Robo Rush                                | 5    
+                | Word Wizard English                      | 4    
+                | Escape Room                              | 4    
+                | Web Treasure Hunting                     | 3    
+                | Cricket Carnival                         | 3    
+                | Mystic Mover                             | 2    
+                | Ludo King                                | 2    
+                | ROBO WAR PRO                             | 1    
+                | Robo Football Clash                      | 1    
+                | Drone Dash                               | 1    
+                | Brain Booster Math                       | 1    
+                | Subtotal for 2026-01-31                  | 49   
+-----------------------------------------------------------------
+2026-02-02      | Free Fire Pro                            | 37   
+                | Mystic Mover                             | 31   
+                | Web Treasure Hunting                     | 21   
+                | Ludo King                                | 19   
+                | BGMI                                     | 17   
+                | AI Hunting                               | 17   
+                | Break The Bot                            | 16   
+                | Logo Hunt                                | 16   
+                | Word Wizard English                      | 15   
+                | Robo Football Clash                      | 14   
+                | AI Quiz                                  | 12   
+                | Treasure Hunt                            | 9    
+                | Robo Mind Matrix                         | 7    
+                | AI Prompt Battle                         | 7    
+                | Escape Room                              | 7    
+                | Fold & Build                             | 5    
+                | Real Life Among Us                       | 5    
+                | Squid Game: In Tech World                | 5    
+                | Survivor Drop                            | 4    
+                | Mini Musti For 1 Min                     | 4    
+                | Puzzle Hunt                              | 4    
+                | Case Catalyst                            | 4    
+                | Bull Vs Bear                             | 4    
+                | Robo Rush                                | 3    
+                | Brain Booster Math                       | 3    
+                | Spin Mania                               | 2    
+                | Reverse Coding                           | 2    
+                | Quantum Quest Physics                    | 2    
+                | Ad Arena                                 | 1    
+                | AI Shape Cipher                          | 1    
+                | Blind Code                               | 1    
+                | Subtotal for 2026-02-02                  | 295  
+-----------------------------------------------------------------
+2026-02-03      | Free Fire Pro                            | 40   
+                | Mystic Mover                             | 40   
+                | Web Treasure Hunting                     | 38   
+                | Real Life Among Us                       | 34   
+                | Logo Hunt                                | 28   
+                | Break The Bot                            | 22   
+                | Ludo King                                | 21   
+                | AI Shape Cipher                          | 16   
+                | Word Wizard English                      | 14   
+                | Robo Football Clash                      | 12   
+                | BGMI                                     | 12   
+                | Robo Mind Matrix                         | 11   
+                | AI Prompt Battle                         | 9    
+                | AI Quiz                                  | 8    
+                | Robo Rush                                | 7    
+                | Squid Game: In Tech World                | 6    
+                | Quantum Quest Physics                    | 6    
+                | Mini Musti For 1 Min                     | 6    
+                | Cricket Carnival                         | 4    
+                | Reverse Coding                           | 3    
+                | Treasure Hunt                            | 3    
+                | AI Hunting                               | 3    
+                | Brain Booster Math                       | 3    
+                | Bull Vs Bear                             | 2    
+                | Escape Room                              | 2    
+                | Blind Code                               | 1    
+                | Puzzle Hunt                              | 1    
+                | Spin Mania                               | 1    
+                | Drone Dash                               | 1    
+                | Ad Arena                                 | 1    
+                | Subtotal for 2026-02-03                  | 355  
+-----------------------------------------------------------------
+2026-02-04      | AI Shape Cipher                          | 63   
+                | Real Life Among Us                       | 56   
+                | Robo Mind Matrix                         | 31   
+                | Free Fire Pro                            | 23   
+                | Squid Game: In Tech World                | 23   
+                | Ludo King                                | 15   
+                | Break The Bot                            | 11   
+                | Word Wizard English                      | 10   
+                | BGMI                                     | 10   
+                | AI Hunting                               | 8    
+                | Logo Hunt                                | 7    
+                | AI Prompt Battle                         | 6    
+                | Escape Room                              | 5    
+                | AI Quiz                                  | 5    
+                | Brain Booster Math                       | 4    
+                | Biz Brain Challenge                      | 3    
+                | Treasure Hunt                            | 3    
+                | Mystic Mover                             | 3    
+                | Fold & Build                             | 2    
+                | Spin Mania                               | 2    
+                | Bull Vs Bear                             | 2    
+                | Robo Football Clash                      | 2    
+                | Puzzle Hunt                              | 2    
+                | Cricket Carnival                         | 2    
+                | Ad Arena                                 | 1    
+                | Reverse Coding                           | 1    
+                | Blind Code                               | 1    
+                | Quantum Quest Physics                    | 1    
+                | Subtotal for 2026-02-04                  | 302  
+-----------------------------------------------------------------
+2026-02-05      | Spin Mania                               | 18   
+                | Case Catalyst                            | 13   
+                | Mystic Mover                             | 10   
+                | Brain Booster Math                       | 8    
+                | Ad Arena                                 | 7    
+                | Break The Bot                            | 7    
+                | Logo Hunt                                | 7    
+                | Word Wizard English                      | 7    
+                | AI Quiz                                  | 6    
+                | Escape Room                              | 5    
+                | Free Fire Pro                            | 4    
+                | Biz Brain Challenge                      | 3    
+                | Survivor Drop                            | 3    
+                | Fold & Build                             | 3    
+                | Robo Mind Matrix                         | 3    
+                | BGMI                                     | 3    
+                | Puzzle Hunt                              | 2    
+                | Real Life Among Us                       | 2    
+                | Blind Code                               | 2    
+                | Treasure Hunt                            | 1    
+                | Cricket Carnival                         | 1    
+                | Robo Rush                                | 1    
+                | AI Prompt Battle                         | 1    
+                | AI Hunting                               | 1    
+                | Subtotal for 2026-02-05                  | 118  
+-----------------------------------------------------------------
+2026-02-06      | Reverse Coding                           | 51   
+                | Free Fire Pro                            | 19   
+                | AI Quiz                                  | 18   
+                | Puzzle Hunt                              | 16   
+                | Mystic Mover                             | 15   
+                | AI Shape Cipher                          | 13   
+                | Spin Mania                               | 11   
+                | Real Life Among Us                       | 11   
+                | Blind Code                               | 9    
+                | Logo Hunt                                | 8    
+                | Brain Booster Math                       | 8    
+                | Case Catalyst                            | 8    
+                | Robo Mind Matrix                         | 7    
+                | Word Wizard English                      | 7    
+                | Quantum Quest Physics                    | 7    
+                | Bull Vs Bear                             | 5    
+                | Ad Arena                                 | 4    
+                | BGMI                                     | 4    
+                | Fold & Build                             | 3    
+                | Survivor Drop                            | 3    
+                | Escape Room                              | 3    
+                | Biz Brain Challenge                      | 3    
+                | Cricket Carnival                         | 3    
+                | AI Prompt Battle                         | 2    
+                | Treasure Hunt                            | 2    
+                | Ludo King                                | 2    
+                | Robo Rush                                | 2    
+                | Drone Dash                               | 2    
+                | Web Treasure Hunting                     | 2    
+                | Autonomous Robotics Workshop             | 1    
+                | Mini Musti For 1 Min                     | 1    
+                | Break The Bot                            | 1    
+                | Subtotal for 2026-02-06                  | 251  
+-----------------------------------------------------------------
+2026-02-07      | Robo Mind Matrix                         | 49   
+                | Real Life Among Us                       | 27   
+                | Squid Game: In Tech World                | 14   
+                | Mystic Mover                             | 12   
+                | Free Fire Pro                            | 12   
+                | Logo Hunt                                | 11   
+                | Mini Musti For 1 Min                     | 9    
+                | Break The Bot                            | 9    
+                | Quantum Quest Physics                    | 8    
+                | BGMI                                     | 7    
+                | AI Quiz                                  | 5    
+                | AI Shape Cipher                          | 5    
+                | Blind Code                               | 3    
+                | Escape Room                              | 3    
+                | Ludo King                                | 3    
+                | Cricket Carnival                         | 3    
+                | Spin Mania                               | 2    
+                | Reverse Coding                           | 2    
+                | Brain Booster Math                       | 2    
+                | AI Hunting                               | 2    
+                | Word Wizard English                      | 2    
+                | Case Catalyst                            | 2    
+                | Puzzle Hunt                              | 2    
+                | AI Prompt Battle                         | 1    
+                | Treasure Hunt                            | 1    
+                | Bull Vs Bear                             | 1    
+                | Fold & Build                             | 1    
+                | Subtotal for 2026-02-07                  | 198  
+-----------------------------------------------------------------
+2026-02-08      | Bull Vs Bear                             | 1    
+                | Reel Rush                                | 1    
+                | Subtotal for 2026-02-08                  | 2    
+-----------------------------------------------------------------
+2026-02-09      | Reverse Coding                           | 41   
+                | Robo Football Clash                      | 11   
+                | Case Catalyst                            | 8    
+                | BGMI                                     | 7    
+                | Blind Code                               | 5    
+                | AI Hunting                               | 5    
+                | Free Fire Pro                            | 5    
+                | Dream to Deal                            | 4    
+                | Reel Rush                                | 4    
+                | Spin Mania                               | 2    
+                | Mini Musti For 1 Min                     | 2    
+                | Escape Room                              | 1    
+                | Puzzle Hunt                              | 1    
+                | Treasure Hunt                            | 1    
+                | Ludo King                                | 1    
+                | AI Shape Cipher                          | 1    
+                | Ad Arena                                 | 1    
+                | Biz Brain Challenge                      | 1    
+                | Mystic Mover                             | 1    
+                | Real Life Among Us                       | 1    
+                | Web Treasure Hunting                     | 1    
+                | Subtotal for 2026-02-09                  | 104  
+-----------------------------------------------------------------
+2026-02-10      | Mini Musti For 1 Min                     | 9    
+                | Reverse Coding                           | 7    
+                | Free Fire Pro                            | 4    
+                | BGMI                                     | 3    
+                | Bull Vs Bear                             | 2    
+                | Blind Code                               | 1    
+                | Word Wizard English                      | 1    
+                | Ludo King                                | 1    
+                | Subtotal for 2026-02-10                  | 28   
+-----------------------------------------------------------------
+2026-02-11      | Reel Rush                                | 15   
+                | Quantum Quest Physics                    | 8    
+                | AI Hunting                               | 8    
+                | Ad Arena                                 | 6    
+                | Bull Vs Bear                             | 5    
+                | Logo Hunt                                | 3    
+                | Mini Musti For 1 Min                     | 3    
+                | Drone Dash                               | 2    
+                | Mystic Mover                             | 2    
+                | Robo Football Clash                      | 2    
+                | Real Life Among Us                       | 1    
+                | Spin Mania                               | 1    
+                | Cricket Carnival                         | 1    
+                | AI Quiz                                  | 1    
+                | Break The Bot                            | 1    
+                | Ludo King                                | 1    
+                | Brain Booster Math                       | 1    
+                | Case Catalyst                            | 1    
+                | AI Prompt Battle                         | 1    
+                | Biz Brain Challenge                      | 1    
+                | Dream to Deal                            | 1    
+                | Subtotal for 2026-02-11                  | 65   
+-----------------------------------------------------------------
+2026-02-12      | Brain Booster Math                       | 12   
+                | BGMI                                     | 9    
+                | Free Fire Pro                            | 9    
+                | Bull Vs Bear                             | 8    
+                | Blind Code                               | 8    
+                | Word Wizard English                      | 6    
+                | Quantum Quest Physics                    | 5    
+                | Cricket Carnival                         | 5    
+                | Puzzle Hunt                              | 4    
+                | Ad Arena                                 | 4    
+                | Ludo King                                | 4    
+                | Drone Dash                               | 3    
+                | AI Hunting                               | 2    
+                | Break The Bot                            | 2    
+                | AI Quiz                                  | 1    
+                | Mystic Mover                             | 1    
+                | Robotics Challenge                       | 1    
+                | Logo Hunt                                | 1    
+                | ROBO WAR PRO                             | 1    
+                | Reel Rush                                | 1    
+                | Escape Room                              | 1    
+                | Subtotal for 2026-02-12                  | 88   
+-----------------------------------------------------------------
+2026-02-13      | Autonomous Robotics Workshop             | 1    
+                | Subtotal for 2026-02-13                  | 1    
+-----------------------------------------------------------------
+
+GRAND TOTAL PAID ENTRIES: 2476
+============================================================

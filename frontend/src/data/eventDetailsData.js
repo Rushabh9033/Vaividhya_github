@@ -41,6 +41,7 @@ import ROBOTICSCHALLENGE from "../assets/robotics-challenge-final.jpg";
 import FREEEVENTPOSTER from "../assets/SQUIDGAMEINTECHWORLD.jpeg";
 import ESCAPEROOM from "../assets/ESCAPEROOM.png";
 import BRIDGEBATTLE from "../assets/BRIDGEBATTLE.jpeg";
+import REELRUSH from "../assets/REELRUSH.png";
 
 const eventDetailsData = {
   "web-treasure-hunting": {
@@ -314,9 +315,9 @@ const eventDetailsData = {
     name: "Robo Football Clash",
     tagline: "Drive the bot. Dominate the pitch.",
     poster: ROBOFOOTBALL,
-    fee: "100",
+    fee: "50",
     about: "A high-energy robotic football competition where players control a robot to score goals.",
-    registration: "₹100 per participant | Outdoor event",
+    registration: "₹50 per participant | Outdoor event",
     rules: [
       "Participants must follow instructions.",
       "All hints provided on paper.",
@@ -900,20 +901,42 @@ const eventDetailsData = {
     contact: "Contact Info"
   },
   "word-wizard-english": {
-    name: "Word Wizard English",
-    tagline: "Spell it Right",
+    name: "Word Wizard",
+    tagline: "From LoL to Lexicon!",
     poster: WORDWIZARD,
     fee: "50",
-    about: "Vocabulary and spelling.",
-    registration: "Fee: 50",
-    rules: ["English only."],
-    rounds: ["Spelling Bee"],
-    venue: "Classroom",
-    time: "10:00 AM",
-    prizes: "Certificates",
-    facultyCoordinator: "Coordinator",
-    studentCoordinators: ["Student"],
-    contact: "Contact Info"
+    about: "A vocabulary and spelling competition for English enthusiasts where participants are tested on their lexicon, creative identification, and logical problem-solving skills.",
+    registration: "The participation fee for individual is Rs. 50 per participant. (Maximum Entry – 200 participants)",
+    rules: [
+      "This event is an individual event.",
+      "Use of any electronic device is strictly prohibited.",
+      "Internet facility or reference books will not be provided.",
+      "Participants must carry their own pen/pencil.",
+      "All participants must co-operate with student coordinators.",
+      "The decision of the faculty coordinator will be final in case of any dispute.",
+      "No discussion is allowed with other participants unless mentioned.",
+      "Any unfair means will lead to immediate disqualification.",
+      "Participants must remain in the allotted area during the event.",
+      "Any damage to college property will be charged accordingly.",
+      "After Round 1, only 50% participants will be selected for Round 2.",
+      "After Round 2, 25% participants will qualify for the Final Round.",
+      "Final winner will be decided based on maximum points scored in all rounds."
+    ],
+    rounds: [
+      "Round 1: Word Basket Blitz – 4 participants play at a time. A basket contains balls with alphabets written on them. Each participant picks balls and uses the letters to form meaningful English words. Time limit: 1 minute. Only words with minimum 4 letters are allowed. Very common short words (like am, is, are, it, and) are not allowed. Each correct word gives points. The participant who forms the maximum number of valid words wins the round. This round tests vocabulary, spelling, and speed thinking.",
+      "Round 2: Guess My Name (Creative Thinking Round) – Participants will be shown flashcards (e.g., butter + fly). Contestants must identify and form a single meaningful English word or sentence. Example: Butter + Fly = Butterfly. Creativity, accuracy, and explanation will be judged.",
+      "Round 3: Word Fusion (Logical Vocabulary Round) – Participants will solve an English Word Sudoku. Words must be placed correctly according to hints. This round checks vocabulary, logic, and problem-solving skills. The participant with the highest score will be declared the Winner.",
+      "Bonus Round: Word Connect – Participants will be given a set of English letters arranged in a circular pattern. Using the given letters, contestants must form meaningful English words by connecting letters. This game tests vocabulary strength, spelling accuracy, and quick thinking. Difficulty level will increase gradually."
+    ],
+    venue: "Room No. 106, 107",
+    time: "10:30 AM to 5:00 PM",
+    prizes: "🥇 Winners will be awarded with cash and attractive prizes!",
+    facultyCoordinator: "Prof. Ami Sojitra (9173247428)",
+    studentCoordinators: [
+      "Anjali Aajagiya (9328905470 | En. No. 230760107001)",
+      "Rutvi Patel (6351705554 | En. No. 240760107169)"
+    ],
+    contact: "Anjali Aajagiya (9328905470)"
   },
   "free-fun-event": {
     name: "Free Fun Event",
@@ -1017,7 +1040,7 @@ const eventDetailsData = {
     poster: FREEFIREPRO,
     fee: "50",
     about: "Battle Royale.",
-    registration: "Fee: 150",
+    registration: "Fee: 50 per participant.",
     rules: ["Survival."],
     rounds: ["Match"],
     venue: "Gaming Zone",
@@ -1042,6 +1065,34 @@ const eventDetailsData = {
     facultyCoordinator: "Coordinator",
     studentCoordinators: ["Student"],
     contact: "Contact Info"
+  },
+  "reel-rush": {
+    name: "Reel Rush",
+    tagline: "Turn Moments into Magic.",
+    poster: REELRUSH,
+    fee: "50",
+    about: "A content creation competition where participants create reels based on event themes.",
+    registration: "Individual entry. Max 100 participants.",
+    rules: [
+      "Reel duration: 15–90 seconds.",
+      "Format: Vertical HD (min 720p).",
+      "Content must be original; no copyright music/visuals.",
+      "College name (SSASIT) must appear.",
+      "No obscene/political content.",
+      "Bring your own gadgets.",
+      "Winners must not upload reels for 1 week."
+    ],
+    rounds: [
+      "Round 1: Decoration Reel",
+      "Round 2: Game On Event Reel",
+      "Round 3: Vaividhya 2k26 Reel"
+    ],
+    venue: "Room No. 305",
+    time: "16-02-26 to 21-02-26 (Submit by 12:00 PM on 21st)",
+    prizes: "Certificates and attractive rewards.",
+    facultyCoordinator: "Prof. Dharati Shah, Prof. Bhaviksha Bhagat",
+    studentCoordinators: ["Sakshi Vanani (8238574931)", "Pranav Jogi (9328796087)", "Aditi Borda (6280602433)"],
+    contact: "Sakshi Vanani (8238574931)"
   }
 };
 

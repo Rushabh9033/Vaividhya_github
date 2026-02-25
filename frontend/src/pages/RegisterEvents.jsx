@@ -12,6 +12,12 @@ function RegisterEvents() {
 
   const [events, setEvents] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("ALL");
+
+  // ✅ Events requested to be disabled/greyed out
+  const DISABLED_EVENTS = [];
+
   const [status, setStatus] = useState({
     loading: true,
     error: null,
@@ -29,37 +35,90 @@ function RegisterEvents() {
     "Engineering"
   ];
 
-  // ================= LOAD EVENTS FROM LOCAL DATA =================
-  // Users requested to use the same logic as Events page (which uses local data)
-  // This guarantees images load and we send the correct SLUG to backend.
+  // ================= LOAD EVENTS FROM LOCAL DATA (NOW MERGED WITH DB) =================
   useEffect(() => {
     if (!userId) {
       navigate("/register");
       return;
     }
 
-    // Map local eventsData to the structure expected by this component
-    const mappedEvents = eventsData.map(e => ({
-      event_id: e.slug,       // USE SLUG AS ID (Matches backend seed)
-      event_name: e.name,
-      category: e.category,
-      price: e.fee,
-      image: e.poster         // Direct image usage (Guaranteed to work)
-    }));
+    async function loadEvents() {
+      try {
+        // Fetch from Database
+        const response = await fetch(API.EVENTS);
+        if (!response.ok) throw new Error("Failed to load events");
+        const dbEvents = await response.json();
 
-    setEvents(mappedEvents);
-    setStatus({ loading: false, error: null, submitting: false });
+        // Map backend prices while keeping local images
+        const mappedEvents = dbEvents.map(dbEvent => {
+          // Find matching local event for the poster image
+          const localMatch = eventsData.find(e =>
+            e.slug === dbEvent.event_id ||
+            String(e.id) === String(dbEvent.event_id) ||
+            e.name === dbEvent.event_name
+          );
+
+          return {
+            event_id: dbEvent.event_id,
+            event_name: dbEvent.event_name,
+            category: dbEvent.category,
+            // Favor DB price (checking both price and fee keys)
+            price: dbEvent.price !== undefined ? dbEvent.price : (dbEvent.fee || 0),
+            image: localMatch ? localMatch.poster : "/placeholder.png"
+          };
+        });
+
+        // Also add any local events that are NOT in the database yet (fallback)
+        const dbIds = dbEvents.map(e => e.event_id);
+        const missingLocalEvents = eventsData.filter(e => !dbIds.includes(e.slug)).map(e => ({
+          event_id: e.slug,
+          event_name: e.name,
+          category: e.category,
+          price: e.fee || 0,
+          image: e.poster
+        }));
+
+        setEvents([...mappedEvents, ...missingLocalEvents]);
+        setStatus({ loading: false, error: null, submitting: false });
+
+      } catch (err) {
+        console.error("Using fallback local data due to error:", err);
+        // Fallback to purely local if DB fails
+        const fallbackEvents = eventsData.map(e => ({
+          event_id: e.slug,
+          event_name: e.name,
+          category: e.category,
+          price: e.fee || 0,
+          image: e.poster
+        }));
+        setEvents(fallbackEvents);
+        setStatus({ loading: false, error: null, submitting: false });
+      }
+    }
+
+    loadEvents();
 
   }, [userId, navigate]);
 
 
 
   // ================= FILTER EVENTS =================
-  const technicalEvents = events.filter(
+  const filteredEvents = events.filter(e => {
+    const matchesSearch = e.event_name.toLowerCase().includes(searchQuery.toLowerCase());
+    const isTech = TECHNICAL_CATEGORIES.includes(e.category);
+
+    let matchesCategory = true;
+    if (categoryFilter === "TECHNICAL") matchesCategory = isTech;
+    if (categoryFilter === "NON_TECHNICAL") matchesCategory = !isTech;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const technicalEvents = filteredEvents.filter(
     e => TECHNICAL_CATEGORIES.includes(e.category)
   );
 
-  const nonTechnicalEvents = events.filter(
+  const nonTechnicalEvents = filteredEvents.filter(
     e => !TECHNICAL_CATEGORIES.includes(e.category)
   );
 
@@ -165,7 +224,40 @@ function RegisterEvents() {
 
           <h1>Select Your Events</h1>
 
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto">
+          {/* SEARCH & FILTER UI */}
+          <div className="registration-filters">
+            <div className="search-box">
+              <i className="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Search events (e.g. Robo, AI)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <div className="filter-tabs">
+              <button
+                className={categoryFilter === "ALL" ? "active" : ""}
+                onClick={() => setCategoryFilter("ALL")}
+              >
+                All
+              </button>
+              <button
+                className={categoryFilter === "TECHNICAL" ? "active" : ""}
+                onClick={() => setCategoryFilter("TECHNICAL")}
+              >
+                Technical
+              </button>
+              <button
+                className={categoryFilter === "NON_TECHNICAL" ? "active" : ""}
+                onClick={() => setCategoryFilter("NON_TECHNICAL")}
+              >
+                Non-Technical
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 max-w-2xl mx-auto rounded-r-lg shadow-sm" style={{ color: "#856404" }}>
             <p className="font-bold">🎉 Offers & Rules</p>
             <ul className="list-disc ml-5">
               <li>Max 3 Technical & 2 Non-Technical Events</li>
@@ -173,7 +265,20 @@ function RegisterEvents() {
             </ul>
           </div>
 
-          {/* TECHNICAL */}
+          {/* EMPTY STATE */}
+          {technicalEvents.length === 0 && nonTechnicalEvents.length === 0 && (
+            <div className="no-events-found">
+              <i className="fas fa-search"></i>
+              <h3>No events found matching "{searchQuery}"</h3>
+              <p>Try searching for a different keyword or changing the category filter.</p>
+              <button
+                className="clear-search-btn"
+                onClick={() => { setSearchQuery(""); setCategoryFilter("ALL"); }}
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
           {technicalEvents.length > 0 && (
             <>
               <h2 className="event-category-title">Technical Events</h2>
@@ -184,6 +289,7 @@ function RegisterEvents() {
                     event={event}
                     selectedIds={selectedIds}
                     onToggle={toggleEvent}
+                    isPermanentlyDisabled={DISABLED_EVENTS.includes(event.event_id)}
                   />
                 ))}
               </div>
@@ -201,28 +307,25 @@ function RegisterEvents() {
                     event={event}
                     selectedIds={selectedIds}
                     onToggle={toggleEvent}
+                    isPermanentlyDisabled={DISABLED_EVENTS.includes(event.event_id)}
                   />
                 ))}
               </div>
             </>
           )}
 
-          {/* FIXED BOTTOM BAR */}
-          <div className="fixed-bottom-bar">
-            <div className="total-display">
-              <span className="text-lg">Selected: {selectedIds.length}</span>
-              <div className="price-stack">
-                {discount > 0 && <span className="original-price">₹{rawTotal}</span>}
-                <span className="final-price">₹{finalTotal}</span>
-                {discount > 0 && <span className="discount-badge text-xs bg-green-500 text-white px-1 rounded">-₹30</span>}
-              </div>
+          {/* SUBMIT */}
+          <div className="proceed-btn-wrapper">
+            <div style={{ marginBottom: "20px", textAlign: "center" }}>
+              <span style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#00e5ff" }}>Total: ₹{finalTotal}</span>
+              {discount > 0 && <span style={{ marginLeft: "10px", color: "#22c55e", fontSize: "0.9rem" }}>(₹30 Discount Applied)</span>}
             </div>
             <button
-              className="proceed-btn-small"
+              className="proceed-btn"
               disabled={selectedIds.length === 0 || status.submitting}
               onClick={handleProceed}
             >
-              {status.submitting ? "..." : "Proceed →"}
+              {status.submitting ? "Processing..." : "Proceed →"}
             </button>
           </div>
 
@@ -235,33 +338,34 @@ function RegisterEvents() {
 }
 
 // ================= EVENT CARD =================
-function EventCard({ event, selectedIds, onToggle }) {
+function EventCard({ event, selectedIds, onToggle, isPermanentlyDisabled }) {
   const isSelected = selectedIds.includes(event.event_id);
 
   // Fix: Check against MAX TOTAL (5), logic handles category splits
   const isMaxReached = selectedIds.length >= 5 && !isSelected;
-  const isDisabled = isMaxReached;
+  const isDisabled = isMaxReached || isPermanentlyDisabled;
 
   return (
-    <label className={`event-select-card ${isSelected ? "selected" : ""}`}>
+    <label className={`event-select-card ${isSelected ? "selected" : ""} ${isPermanentlyDisabled ? "permanently-disabled" : ""}`}>
       <input
         type="checkbox"
         checked={isSelected}
         disabled={isDisabled}
-        onChange={() => onToggle(event.event_id, event.category)}
+        onChange={() => !isPermanentlyDisabled && onToggle(event.event_id, event.category)}
       />
       <img
         src={event.image}
         alt={event.event_name}
+        style={isPermanentlyDisabled ? { filter: "grayscale(100%) opacity(0.5)" } : {}}
         onError={(e) => {
           if (e.target.src.includes("placeholder.png")) return; // Prevent loop
           e.target.src = "/placeholder.png";
         }}
       />
-      <h3>{event.event_name}</h3>
+      <h3 style={isPermanentlyDisabled ? { color: "#64748b" } : {}}>{event.event_name}</h3>
       <p className="event-category">{event.category}</p>
       <p className="event-fee">
-        {event.price == 0 ? "Free" : `₹${event.price}`}
+        {isPermanentlyDisabled ? "Closed" : (event.price == 0 ? "Free" : `₹${event.price}`)}
       </p>
     </label>
   );

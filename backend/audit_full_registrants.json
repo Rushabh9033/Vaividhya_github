@@ -1,0 +1,36 @@
+{
+    "registrations_list": [
+        {
+            "enrollment_no": "250761305022",
+            "full_name": "DHANANI TAKSH SATISHKUMAR ",
+            "selected_events": [
+                "autonomous-robotics-workshop"
+            ],
+            "event_details": []
+        },
+        {
+            "enrollment_no": "e23110125000910080",
+            "full_name": "Keval Gamanbhai Patel ",
+            "selected_events": [
+                "autonomous-robotics-workshop"
+            ],
+            "event_details": []
+        },
+        {
+            "enrollment_no": "e23110125000910086",
+            "full_name": "Kris Alpeshbhai Patel ",
+            "selected_events": [
+                "autonomous-robotics-workshop"
+            ],
+            "event_details": []
+        },
+        {
+            "enrollment_no": "e23110125000910056",
+            "full_name": "Manav J Panchal ",
+            "selected_events": [
+                "autonomous-robotics-workshop"
+            ],
+            "event_details": []
+        }
+    ]
+}

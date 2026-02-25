@@ -68,11 +68,8 @@ function Receipt() {
   // --- FRONTEND TOTAL CALCULATION ---
   // Calculate total because backend might return 0 after rollback
   const calculatedTotal = (event_details || []).reduce((sum, event) => {
-    // Find price from local eventsData
-    const localEvent = eventsData.find(e =>
-      e.slug === event.event_id || e.id === event.event_id || e.name === event.event_name
-    );
-    const price = localEvent ? localEvent.fee : (event.price || 0);
+    // Strictly use Database Prices
+    const price = event.price !== undefined && event.price !== null ? event.price : (event.fee || 0);
     return sum + price;
   }, 0);
 
@@ -173,7 +170,7 @@ function Receipt() {
                 <i className="bi bi-ticket-perforated-fill"></i> Registered Events
               </h5>
 
-              <div className="list-group list-group-flush">
+              <div className="row g-3">
                 {event_details && event_details.map((event) => {
                   // Robust Image Lookup (Matches RegisterEvents logic)
                   const normalize = (str) => String(str || "").toLowerCase().trim();
@@ -190,30 +187,35 @@ function Receipt() {
 
                   const imageUrl = localMatch?.poster || EVENT_IMAGES[event.event_id] || fuzzyImage || EVENT_IMAGES["DEFAULT"];
 
+                  // Strictly use Database Prices
+                  const displayPrice = event.price !== undefined && event.price !== null ? event.price : (event.fee || 0);
+
                   return (
-                    <div key={event.event_id} className="list-group-item d-flex align-items-center p-3 border rounded mb-2 shadow-sm break-avoid">
+                    // Display each event compactly side-by-side in columns
+                    <div key={event.event_id} className="col-12 col-md-6 break-avoid">
+                      <div className="d-flex align-items-center p-2 border rounded shadow-sm h-100 bg-white">
+                        <div className="flex-shrink-0">
+                          <img
+                            src={imageUrl}
+                            alt={event.event_name}
+                            className="rounded"
+                            style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                            onError={(e) => (e.target.src = EVENT_IMAGES["DEFAULT"])}
+                          />
+                        </div>
 
-                      <div className="flex-shrink-0">
-                        <img
-                          src={imageUrl}
-                          alt={event.event_name}
-                          className="rounded"
-                          style={{ width: "70px", height: "70px", objectFit: "cover" }}
-                          onError={(e) => (e.target.src = EVENT_IMAGES["DEFAULT"])}
-                        />
-                      </div>
-
-                      <div className="flex-grow-1 ms-3">
-                        <h5 className="mb-1 fw-bold text-dark">
-                          {event.event_name}
-                          {event.price === 0 && (
-                            <span className="badge bg-warning text-dark ms-2" style={{ fontSize: "0.7rem" }}>FREE</span>
+                        <div className="flex-grow-1 ms-3">
+                          <h6 className="mb-0 fw-bold text-dark text-truncate" style={{ maxWidth: '140px' }} title={event.event_name}>
+                            {event.event_name}
+                          </h6>
+                          {displayPrice === 0 && (
+                            <span className="badge bg-warning text-dark mt-1" style={{ fontSize: "0.6rem" }}>FREE</span>
                           )}
-                        </h5>
-                      </div>
+                        </div>
 
-                      <div className="text-end ms-3">
-                        <span className="fs-5 fw-bold font-monospace">₹{event.price}</span>
+                        <div className="text-end ms-2 pl-2 border-start">
+                          <span className="fs-6 fw-bold font-monospace d-block ms-2">₹{displayPrice}</span>
+                        </div>
                       </div>
                     </div>
                   );
@@ -222,10 +224,10 @@ function Receipt() {
             </div>
 
             {/* 4. TOTAL */}
-            <div className="row mt-4 break-avoid">
-              <div className="col-12 text-center">
-                <p className="text-muted text-uppercase fw-bold small mb-0">Total Amount Payable</p>
-                <h1 className="text-primary fw-bold display-6 print-text-primary">₹{finalAmount}</h1>
+            <div className="row mt-4 break-avoid text-center">
+              <div className="col-12">
+                <p className="text-muted text-uppercase fw-bold small mb-1">Total Amount Payable</p>
+                <h1 className="text-primary fw-bold display-6 print-text-primary mb-0">₹{finalAmount}</h1>
               </div>
             </div>
 
@@ -297,17 +299,37 @@ function Receipt() {
             }
 
             /* 4. Restore backgrounds and colors */
-            @page { margin: 0.5cm; size: auto; }
+            @page { margin: 0.2cm; size: A4 portrait; }
             body { 
               background-color: white !important; 
               -webkit-print-color-adjust: exact !important; 
               print-color-adjust: exact !important; 
             }
 
+            /* Zoom out slightly so 5 events definitely fit on a single A4 page */
+            #printable-card {
+                transform: scale(0.9);
+                transform-origin: top left;
+                width: 111% !important; /* compensate for scale */
+            }
+
+            /* Compress row spacing slightly for print */
+            .list-group-item, .p-3 {
+               padding: 0.5rem !important;
+               margin-bottom: 0.2rem !important;
+            }
+            .mt-5 {
+               margin-top: 1rem !important;
+            }
+            .mb-4 {
+               margin-bottom: 1rem !important;
+            }
+
             /* 5. Safety for Dark Headers: If bg doesn't print, ensure text is dark */
             .print-header {
                background-color: #212529 !important;
                color: white !important;
+               padding: 1rem !important;
             }
             
             /* Fallback: if browser ignores background-color, make text black so it's readable */

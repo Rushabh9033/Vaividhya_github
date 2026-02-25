@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from database import admins_collection, registrations_collection 
+from database import admins_collection, registrations_collection, events_collection 
 from models.admin import AdminLogin
 from passlib.context import CryptContext
 from bson import ObjectId
@@ -69,3 +69,68 @@ async def event_stats():
     # to_list requires length, using 1000 to cover all possible events
     stats = await registrations_collection.aggregate(pipeline).to_list(length=1000)
     return stats
+
+@router.get("/admin/event-level-registrations")
+async def event_level_registrations():
+    # 1. Fetch all events to get names and prices
+    events_list = await events_collection.find({}, {"_id": 0}).to_list(100)
+    event_map = {e.get("event_id") or e.get("slug"): e for e in events_list}
+
+    # 2. Fetch all registrations
+    regs = await registrations_collection.find().to_list(3000)
+
+    # 3. Flatten the data
+    flattened = []
+    for r in regs:
+        # Base user information
+        user_info = {
+            "reg_id": str(r["_id"]),
+            "full_name": r.get("full_name", "N/A"),
+            "enrollment_no": r.get("enrollment_no", "N/A"),
+            "email": r.get("email", "N/A"),
+            "phone": r.get("phone", "N/A"),
+            "college": r.get("college", "N/A"),
+            "department": r.get("department", "N/A"),
+            "year": r.get("year", "N/A"),
+            "payment_status": r.get("payment_status", "PENDING"),
+            "approved_by": r.get("approved_by"),
+            "approved_at": r.get("approved_at"),
+            "register_date": r.get("register_date"),
+            "register_time": r.get("register_time")
+        }
+
+        # Check for events in 'selected_events' (list of slugs) 
+        # or 'event_details' (list of objects)
+        ev_list = r.get("selected_events", [])
+        details = r.get("event_details", [])
+
+        # Priority on 'event_details' if it exists and has content
+        if details and isinstance(details, list):
+            for detail in details:
+                ev_info = user_info.copy()
+                ev_info.update({
+                    "event_id": detail.get("event_id") or detail.get("event_name"),
+                    "event_name": detail.get("event_name"),
+                    "event_category": detail.get("category") or "N/A",
+                    "price": detail.get("price", 0)
+                })
+                flattened.append(ev_info)
+        
+        # fallback to 'selected_events' slugs if details was empty
+        elif ev_list and isinstance(ev_list, list):
+            for slug in ev_list:
+                ev_data = event_map.get(slug, {})
+                ev_info = user_info.copy()
+                ev_info.update({
+                    "event_id": slug,
+                    "event_name": ev_data.get("event_name") or ev_data.get("name") or slug,
+                    "event_category": ev_data.get("category", "N/A"),
+                    "price": ev_data.get("price") or ev_data.get("fee") or 0
+                })
+                flattened.append(ev_info)
+    
+    # 4. Sort by approved_at DESC (Newest approvals first)
+    # We use a custom key to handle None/missing values safely
+    flattened.sort(key=lambda x: str(x.get("approved_at") or ""), reverse=True)
+    
+    return flattened
